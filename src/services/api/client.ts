@@ -1,60 +1,34 @@
-import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
-import type { ApiError } from './types';
+import axios from 'axios';
+import { useAuthStore } from '../../store/authStore';
 
-// Create axios instance
+export const BASE_URL = 'http://app.finovateltd.com:8081/api';
+
 export const apiClient = axios.create({
-  baseURL: process.env.EXPO_PUBLIC_API_URL || 'https://api.finnovate.com',
+  baseURL: BASE_URL,
   timeout: 30000,
-  headers: {
-    'Content-Type': 'application/json',
-  },
 });
 
-// Request interceptor
-apiClient.interceptors.request.use(
-  async (config: InternalAxiosRequestConfig) => {
-    // TODO: Add authentication token from secure storage
-    // const token = await getAuthToken();
-    // if (token && config.headers) {
-    //   config.headers.Authorization = `Bearer ${token}`;
-    // }
-
-    return config;
-  },
-  (error: AxiosError) => {
-    return Promise.reject(error);
+// Inject Bearer token on every request + log outgoing body
+apiClient.interceptors.request.use((config) => {
+  const token = useAuthStore.getState().token;
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
   }
-);
+  console.log(`[API] --> ${config.method?.toUpperCase()} ${config.url}`, config.data ?? '(no body)');
+  return config;
+});
 
-// Response interceptor
+// Log response + handle 401 globally
 apiClient.interceptors.response.use(
   (response) => {
+    console.log(`[API] <-- ${response.status} ${response.config.url}`, response.data);
     return response;
   },
-  async (error: AxiosError) => {
-    const apiError: ApiError = {
-      message: 'An unexpected error occurred',
-      status: error.response?.status,
-    };
-
-    if (error.response) {
-      // Server responded with error status
-      const data = error.response.data as any;
-      apiError.message = data?.message || error.message;
-      apiError.code = data?.code;
-
-      // TODO: Handle specific error cases
-      // if (error.response.status === 401) {
-      //   // Handle unauthorized - clear auth and redirect to login
-      // }
-      // if (error.response.status === 403) {
-      //   // Handle forbidden
-      // }
-    } else if (error.request) {
-      // Request made but no response
-      apiError.message = 'Network error. Please check your connection.';
+  (error) => {
+    console.log(`[API] ERR ${error.response?.status ?? 'network'} ${error.config?.url}`, error.response?.data ?? error.message);
+    if (error.response?.status === 401) {
+      useAuthStore.getState().clearAuth();
     }
-
-    return Promise.reject(apiError);
+    return Promise.reject(error);
   }
 );
