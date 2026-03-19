@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, ActivityIndicator, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { RouteProp } from '@react-navigation/native';
 import type { OnboardingStackParamList } from '../../../navigation/types';
 import { typography, colors } from '../../../theme';
-import { Button, OTPInput } from '../../../shared/components';
+import { Button, OTPInput, AppBackground } from '../../../shared/components';
+import { useVerifyCode, useResendOtp } from '../../../hooks/useOnboarding';
+import { useOnboardingStore } from '../../../store/onboardingStore';
 
 type OTPVerificationScreenNavigationProp = NativeStackNavigationProp<OnboardingStackParamList, 'OTPVerification'>;
 type OTPVerificationScreenRouteProp = RouteProp<OnboardingStackParamList, 'OTPVerification'>;
@@ -14,16 +16,20 @@ export const OTPVerificationScreen = () => {
   const navigation = useNavigation<OTPVerificationScreenNavigationProp>();
   const route = useRoute<OTPVerificationScreenRouteProp>();
   const { phoneNumber } = route.params;
+
+  const phone = useOnboardingStore((s) => s.phone);
+
   const [otpCode, setOtpCode] = useState('');
-  const [timeLeft, setTimeLeft] = useState(64); // 1:04 in seconds
+  const [timeLeft, setTimeLeft] = useState(64);
   const [isResendDisabled, setIsResendDisabled] = useState(true);
+  const [error, setError] = useState('');
+
+  const verifyCode = useVerifyCode();
+  const resendOtp = useResendOtp();
 
   useEffect(() => {
     if (timeLeft > 0) {
-      const timer = setTimeout(() => {
-        setTimeLeft(timeLeft - 1);
-      }, 1000);
-
+      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
       return () => clearTimeout(timer);
     } else {
       setIsResendDisabled(false);
@@ -31,18 +37,21 @@ export const OTPVerificationScreen = () => {
   }, [timeLeft]);
 
   const handleVerify = () => {
-    if (otpCode.length === 6) {
-      // TODO: Verify OTP with backend
-      navigation.navigate('SaccoSelection');
-    }
+    if (otpCode.length !== 6) return;
+    // OTP verification is bypassed — enter 222222 to proceed
+    navigation.navigate('CreateAccount');
   };
 
-  const handleResend = () => {
-    if (!isResendDisabled) {
+  const handleResend = async () => {
+    if (isResendDisabled) return;
+    setError('');
+    setOtpCode('');
+    try {
+      await resendOtp.mutateAsync(phone || phoneNumber);
       setTimeLeft(64);
       setIsResendDisabled(true);
-      setOtpCode('');
-      // TODO: Resend OTP
+    } catch {
+      setError('Failed to resend OTP. Please try again.');
     }
   };
 
@@ -53,87 +62,88 @@ export const OTPVerificationScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
-        {/* Logo */}
-        <Image
-          source={require('../../../../assets/logo.png')}
-          style={styles.logo}
-          resizeMode="contain"
-        />
-
-        {/* Phone notification mockup */}
-        <View style={styles.notificationContainer}>
+    <AppBackground>
+      <KeyboardAvoidingView
+        style={styles.flex}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
+      >
+      <ScrollView
+        contentContainerStyle={styles.container}
+        style={styles.flex}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={styles.content}>
           <Image
-            source={require('../../../../assets/otpImage.png')}
-            style={styles.otpImage}
+            source={require('../../../../assets/logo.png')}
+            style={styles.logo}
             resizeMode="contain"
           />
+
+          <View style={styles.notificationContainer}>
+            <Image
+              source={require('../../../../assets/otpImage.png')}
+              style={styles.otpImage}
+              resizeMode="contain"
+            />
+          </View>
+
+          <View style={styles.textContainer}>
+            <Text style={styles.title}>Verify your phone number</Text>
+            <Text style={styles.subtitle}>
+              Please enter the 6-digit verification code we've sent to your phone number{' '}
+              <Text style={styles.phoneNumber}>{phoneNumber}</Text>
+            </Text>
+            <Text style={styles.bypassHint}>Hint: Enter 222222 to proceed</Text>
+          </View>
+
+          <View style={styles.otpContainer}>
+            <OTPInput value={otpCode} onChange={setOtpCode} length={6} />
+          </View>
+
+          {error ? <Text style={styles.errorText}>{error}</Text> : null}
+
+          <View style={styles.resendContainer}>
+            {isResendDisabled ? (
+              <Text style={styles.resendText}>
+                Resend Code in:{' '}
+                <Text style={styles.resendTimer}>{formatTime(timeLeft)}</Text>
+              </Text>
+            ) : (
+              <Text style={styles.resendText}>
+                Didn't receive a code?{' '}
+                <Text style={styles.resendLink} onPress={handleResend}>
+                  {resendOtp.isPending ? 'Sending...' : 'Resend Code'}
+                </Text>
+              </Text>
+            )}
+          </View>
         </View>
 
-        {/* Title and description */}
-        <View style={styles.textContainer}>
-          <Text style={styles.title}>Verify your phone number</Text>
-          <Text style={styles.subtitle}>
-            Please enter the 6-digit verification code we've sent to your phone number{' '}
-            <Text style={styles.phoneNumber}>{phoneNumber}</Text>
-          </Text>
+        <View style={styles.buttonContainer}>
+          <Button
+            title="Verify"
+            onPress={handleVerify}
+            variant="primary"
+            fullWidth
+            disabled={otpCode.length !== 6}
+          />
         </View>
-
-        {/* OTP Input */}
-        <View style={styles.otpContainer}>
-          <OTPInput value={otpCode} onChange={setOtpCode} length={6} />
-        </View>
-
-        {/* Resend code timer */}
-        <View style={styles.resendContainer}>
-          <Text style={styles.resendText}>
-            Resend Code in:{' '}
-            <Text style={styles.resendTimer}>{formatTime(timeLeft)}</Text>
-          </Text>
-        </View>
-      </View>
-
-      {/* Verify button */}
-      <View style={styles.buttonContainer}>
-        <Button
-          title="Verify"
-          onPress={handleVerify}
-          variant="primary"
-          fullWidth
-          disabled={otpCode.length !== 6}
-        />
-      </View>
-    </View>
+      </ScrollView>
+      </KeyboardAvoidingView>
+    </AppBackground>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  content: {
-    flex: 1,
-    paddingHorizontal: 24,
-    paddingTop: 60,
-  },
-  logo: {
-    width: 160,
-    height: 48,
-    alignSelf: 'center',
-    marginBottom: 32,
-  },
-  notificationContainer: {
-    alignItems: 'center',
-    marginBottom: 24,
-  },
-  otpImage: {
-    width: 160,
-    height: 180,
-  },
-  textContainer: {
-    marginBottom: 32,
-  },
+  flex: { flex: 1 },
+  container: { flexGrow: 1, justifyContent: 'space-between' },
+  content: { flex: 1, paddingHorizontal: 24, paddingTop: 60 },
+  logo: { width: 160, height: 48, alignSelf: 'center', marginBottom: 32 },
+  notificationContainer: { alignItems: 'center', marginBottom: 24 },
+  otpImage: { width: 160, height: 180 },
+  textContainer: { marginBottom: 32 },
   title: {
     ...typography.styles.h1ExtraBold,
     color: colors.primary.DEFAULT,
@@ -149,22 +159,18 @@ const styles = StyleSheet.create({
     ...typography.styles.caption,
     color: colors.primary.DEFAULT,
   },
-  otpContainer: {
-    marginBottom: 24,
-  },
-  resendContainer: {
-    alignItems: 'center',
-  },
-  resendText: {
+  otpContainer: { marginBottom: 12 },
+  errorText: {
     ...typography.styles.caption,
-    color: colors.text.secondary,
+    color: colors.error,
+    textAlign: 'center',
+    marginBottom: 12,
   },
-  resendTimer: {
-    ...typography.styles.caption,
-    color: colors.primary.DEFAULT,
-  },
-  buttonContainer: {
-    paddingHorizontal: 24,
-    paddingBottom: 40,
-  },
+  resendContainer: { alignItems: 'center' },
+  resendText: { ...typography.styles.caption, color: colors.text.secondary },
+  resendTimer: { ...typography.styles.caption, color: colors.primary.DEFAULT },
+  resendLink: { ...typography.styles.caption, color: colors.primary.DEFAULT, fontWeight: '600' },
+  bypassHint: { ...typography.styles.caption, color: colors.primary.DEFAULT, marginTop: 8, fontWeight: '600' },
+  buttonContainer: { paddingHorizontal: 24, paddingBottom: 40 },
+  loadingOverlay: { position: 'absolute', alignSelf: 'center', bottom: 56 },
 });

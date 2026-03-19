@@ -5,6 +5,11 @@ export const STORAGE_KEYS = {
   REFRESH_TOKEN: 'refresh_token',
   USER_ID: 'user_id',
   BIOMETRIC_ENABLED: 'biometric_enabled',
+  USER_DATA: 'user_data',
+  LAST_LOGIN: 'last_login',
+  LAST_KNOWN_NAME: 'last_known_name',
+  STORED_USERNAME: 'stored_username',
+  HAS_COMPLETED_ONBOARDING: 'has_completed_onboarding',
 } as const;
 
 export const secureStorage = {

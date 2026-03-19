@@ -14,7 +14,7 @@
       "distribution": "internal",
       "channel": "preview",
       "android": {
-        "gradleCommand": ":app:assembleDebug"
+        "gradleCommand": ":app:assembleRelease"
       }
     },
     "production": {

@@ -1,0 +1,4150 @@
+{
+  "info": {
+    "_postman_id": "b9164197-c70a-4e44-bf35-7d558d5c392b",
+    "name": "Finovate",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "24279553",
+    "_collection_link": "https://go.postman.co/collection/24279553-b9164197-c70a-4e44-bf35-7d558d5c392b?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Core",
+      "item": [
+        {
+          "name": "getAssociatedOrgs",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "phone",
+                  "value": "0723686428",
+                  "type": "text"
+                },
+                {
+                  "key": "notYetJoined",
+                  "value": "true",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{tlocalURL}}/auth/get-associated-orgs",
+              "host": [
+                "{{tlocalURL}}"
+              ],
+              "path": [
+                "auth",
+                "get-associated-orgs"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "appActivation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "phone",
+                  "value": "0716735875",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{tlocalURL}}/auth/activate",
+              "host": [
+                "{{tlocalURL}}"
+              ],
+              "path": [
+                "auth",
+                "activate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "clientGenerateActivationCode",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiT3JnYW5pemF0aW9uIEFkbWluIiwidXNlcm5hbWUiOiJlcmlja28iLCJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJhdWQiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJqdGkiOiJkNjQ5Mjg1NmE0YTRjMTA0NjgxZGU0ZjNhMmUwZjk4OTEiLCJpYXQiOjE2MjEzMjQ5NjQsImV4cCI6MTYyMTQxMTM2NCwidWlkIjozfQ.gWoTOHSn5S3MTlZnVr7IZELuFI4Xrtz3E9B1f1Q18Bo",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "username",
+                  "value": "moses",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/auth/activation-code",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "auth",
+                "activation-code"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "clientCreateNewPassword",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"token\":\"4716\",\r\n    \"password\":\"1234\",\r\n    \"confirm\":\"1234\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/auth/new-password",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "auth",
+                "new-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "clientChangePassword",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYyODc4MTUwMSwiZXhwIjoxNjI4ODY3OTAxLCJ1aWQiOjQwfQ.QS5R9f8CeYPP7uHMN0KIg_7cRrfnKKDZo5E2Erfku4Y",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"old_password\":\"1234\",\r\n    \"new_password\":\"1235\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/auth/change-password",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "auth",
+                "change-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "OrganizationsList",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHBzOlwvXC90ZXN0LXBvcnRhbC5la2VueWEuY28ua2UiLCJhdWQiOiJodHRwczpcL1wvdGVzdC1wb3J0YWwuZWtlbnlhLmNvLmtlIiwianRpIjoiZDY0OTI4NTZhNGE0YzEwNDY4MWRlNGYzYTJlMGY5ODkxIiwiaWF0IjoxNjI5MDk5MjgyLCJleHAiOjE2MjkxODU2ODIsInVpZCI6NTZ9.7JtXahjtO04I5gv-PCqBg9VxNVZYHkTVvmhpFmSAoME",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{tlocalURL}}/organization/index",
+              "host": [
+                "{{tlocalURL}}"
+              ],
+              "path": [
+                "organization",
+                "index"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "genderList",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHBzOlwvXC90ZXN0LXBvcnRhbC5la2VueWEuY28ua2UiLCJhdWQiOiJodHRwczpcL1wvdGVzdC1wb3J0YWwuZWtlbnlhLmNvLmtlIiwianRpIjoiZDY0OTI4NTZhNGE0YzEwNDY4MWRlNGYzYTJlMGY5ODkxIiwiaWF0IjoxNjI5MDk5MjgyLCJleHAiOjE2MjkxODU2ODIsInVpZCI6NTZ9.7JtXahjtO04I5gv-PCqBg9VxNVZYHkTVvmhpFmSAoME",
+                "type": "text"
+              },
+              {
+                "warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"org_id\":\"12\"\r\n}"
+            },
+            "url": {
+              "raw": "{{tlocalURL}}/gender/index",
+              "host": [
+                "{{tlocalURL}}"
+              ],
+              "path": [
+                "gender",
+                "index"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "setCredential",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYyODgzNzY1MCwiZXhwIjoxNjI4OTI0MDUwLCJ1aWQiOjQwfQ.ga94I_V9v75AXr4tsqCVakiavHKA0XK6cpSJsmDa0OA",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "form_id",
+                  "value": "208",
+                  "type": "text"
+                },
+                {
+                  "key": "username",
+                  "value": "larry",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "1234",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/auth/set-credentials",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "auth",
+                "set-credentials"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ClientCreateBankAccount",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYyODgzNzY1MCwiZXhwIjoxNjI4OTI0MDUwLCJ1aWQiOjQwfQ.ga94I_V9v75AXr4tsqCVakiavHKA0XK6cpSJsmDa0OA",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \r\n    \"bank_id\": 25, \r\n    \"branch_id\": 26, \r\n    \"account_no\": \"4588889-45\", \r\n    \"account_name\": \"VIVIACOUNT1\", \r\n    \"is_default_account\": 1             \r\n            \r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/client/create/bank-accounts",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client",
+                "create",
+                "bank-accounts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "pesalinkToPhone",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYyOTI3MjQ4NSwiZXhwIjoxNjI5MzU4ODg1LCJ1aWQiOjQwfQ.nk9cjwXb65FlovHB3aRRzl0AUnWqFT3a6b0KVcDFIts",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n     \"accountId\": 366,\r\n     \"amount\":50,\r\n     \"recipientPhone\":\"0716735875\",\r\n     \"recipientName\":\"Jacktone\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/saving-account-withdrawal/pesalink-to-phone",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "saving-account-withdrawal",
+                "pesalink-to-phone"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Banks",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9ycmlzIE11cmVnYSIsInVzZXJuYW1lIjoibW9zZXMiLCJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJhdWQiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJqdGkiOiJkNjQ5Mjg1NmE0YTRjMTA0NjgxZGU0ZjNhMmUwZjk4OTEiLCJpYXQiOjE2Njg5NDA0NjgsImV4cCI6MTY2OTAyNjg2OCwidWlkIjo1Nn0.RTL3GaLof0KgLJZy02y2qYfNiueQa2jIsFNY37SWBL0",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHBzOlwvXC90ZXN0LXBvcnRhbC5la2VueWEuY28ua2UiLCJhdWQiOiJodHRwczpcL1wvdGVzdC1wb3J0YWwuZWtlbnlhLmNvLmtlIiwianRpIjoiZDY0OTI4NTZhNGE0YzEwNDY4MWRlNGYzYTJlMGY5ODkxIiwiaWF0IjoxNjI5MDk5MjgyLCJleHAiOjE2MjkxODU2ODIsInVpZCI6NTZ9.7JtXahjtO04I5gv-PCqBg9VxNVZYHkTVvmhpFmSAoME",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseURL}}/bank/index",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "bank",
+                "index"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "BankBranches",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYyODgzNzY1MCwiZXhwIjoxNjI4OTI0MDUwLCJ1aWQiOjQwfQ.ga94I_V9v75AXr4tsqCVakiavHKA0XK6cpSJsmDa0OA",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "bank_id",
+                  "value": "25",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/bank-branch/index",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "bank-branch",
+                "index"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ClientCreateWorkInfo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHBzOlwvXC90ZXN0LXBvcnRhbC5la2VueWEuY28ua2UiLCJhdWQiOiJodHRwczpcL1wvdGVzdC1wb3J0YWwuZWtlbnlhLmNvLmtlIiwianRpIjoiZDY0OTI4NTZhNGE0YzEwNDY4MWRlNGYzYTJlMGY5ODkxIiwiaWF0IjoxNjI5MTAwNDE1LCJleHAiOjE2MjkxODY4MTUsInVpZCI6NTZ9.PWY6LgkX9BlrEp5BdIKU_1SiLwchZrOt3SY0Ng2E8cg",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "employer_id",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "employment_term_id",
+                  "value": "37",
+                  "type": "text"
+                },
+                {
+                  "key": "department",
+                  "value": "ICT",
+                  "type": "text"
+                },
+                {
+                  "key": "work_station",
+                  "value": "Nairobi",
+                  "type": "text"
+                },
+                {
+                  "key": "employment_id",
+                  "value": "34567",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/client/create/work-info",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client",
+                "create",
+                "work-info"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "EmployersList",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYyODgzNzY1MCwiZXhwIjoxNjI4OTI0MDUwLCJ1aWQiOjQwfQ.ga94I_V9v75AXr4tsqCVakiavHKA0XK6cpSJsmDa0OA",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/employer/index",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "employer",
+                "index"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "EmploymentTermsList",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHBzOlwvXC90ZXN0LXBvcnRhbC5la2VueWEuY28ua2UiLCJhdWQiOiJodHRwczpcL1wvdGVzdC1wb3J0YWwuZWtlbnlhLmNvLmtlIiwianRpIjoiZDY0OTI4NTZhNGE0YzEwNDY4MWRlNGYzYTJlMGY5ODkxIiwiaWF0IjoxNjI5MDk5MjgyLCJleHAiOjE2MjkxODU2ODIsInVpZCI6NTZ9.7JtXahjtO04I5gv-PCqBg9VxNVZYHkTVvmhpFmSAoME",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/employment-terms/index",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "employment-terms",
+                "index"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ClientCreateNextKin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHBzOlwvXC90ZXN0LXBvcnRhbC5la2VueWEuY28ua2UiLCJhdWQiOiJodHRwczpcL1wvdGVzdC1wb3J0YWwuZWtlbnlhLmNvLmtlIiwianRpIjoiZDY0OTI4NTZhNGE0YzEwNDY4MWRlNGYzYTJlMGY5ODkxIiwiaWF0IjoxNjI5MDk5MjgyLCJleHAiOjE2MjkxODU2ODIsInVpZCI6NTZ9.7JtXahjtO04I5gv-PCqBg9VxNVZYHkTVvmhpFmSAoME",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n       \"full_name\":\"Jane Arasa\",\r\n       \"relationship_id\":133, \r\n       \"phone\":\"0716745676\", \r\n       \"gender_id\":37, \r\n       \"national_identity\":\"3243954411\", \r\n       \"allocation\":\"1\" ,\r\n       \"dob\": \"25-12-1998\",\r\n       \"email\" : \"orikohjacktone@gmail.com\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/client/create/kin",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client",
+                "create",
+                "kin"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "kinRelationShipTypesList",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHBzOlwvXC90ZXN0LXBvcnRhbC5la2VueWEuY28ua2UiLCJhdWQiOiJodHRwczpcL1wvdGVzdC1wb3J0YWwuZWtlbnlhLmNvLmtlIiwianRpIjoiZDY0OTI4NTZhNGE0YzEwNDY4MWRlNGYzYTJlMGY5ODkxIiwiaWF0IjoxNjI5MDk5MjgyLCJleHAiOjE2MjkxODU2ODIsInVpZCI6NTZ9.7JtXahjtO04I5gv-PCqBg9VxNVZYHkTVvmhpFmSAoME",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/relationship-types/index",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "relationship-types",
+                "index"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ClientCreateResidenceInfo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHBzOlwvXC90ZXN0LXBvcnRhbC5la2VueWEuY28ua2UiLCJhdWQiOiJodHRwczpcL1wvdGVzdC1wb3J0YWwuZWtlbnlhLmNvLmtlIiwianRpIjoiZDY0OTI4NTZhNGE0YzEwNDY4MWRlNGYzYTJlMGY5ODkxIiwiaWF0IjoxNjI5MDk5MjgyLCJleHAiOjE2MjkxODU2ODIsInVpZCI6NTZ9.7JtXahjtO04I5gv-PCqBg9VxNVZYHkTVvmhpFmSAoME",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "estate_name",
+                  "value": "Chiromo",
+                  "type": "text"
+                },
+                {
+                  "key": "residency_type",
+                  "value": "1",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/client/create/residence-info",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client",
+                "create",
+                "residence-info"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ClientResidenceTypesList",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiRXJpYyBPd2lubyIsInVzZXJuYW1lIjoiZXJpY2tvIiwiaXNzIjoiaHR0cDpcL1wvbG9jYWxob3N0IiwiYXVkIjoiaHR0cDpcL1wvbG9jYWxob3N0IiwianRpIjoiZDY0OTI4NTZhNGE0YzEwNDY4MWRlNGYzYTJlMGY5ODkxIiwiaWF0IjoxNTk0OTg1NzYyLCJleHAiOjE1OTUwNzIxNjIsInVpZCI6M30.UyZ_I_M-b3VqkihZTi944UHj078l3ZWnyIQNTakjH3s",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/residence-types/index",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "residence-types",
+                "index"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "IdTypes",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/identity-type/index",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "identity-type",
+                "index"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ClientDetails",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNjQ2MTA2MiwiZXhwIjoxNjM2NTQ3NDYyLCJ1aWQiOjQwfQ.Uu41bVxQhsxsGtTpOxBUqSNF7l_jyHas8b8JvyT1eoA",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/client/details",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client",
+                "details"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "clientAccounts",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiVGVzdCBNZW1iZXI5NjQiLCJ1c2VybmFtZSI6Ik1lbWJlcjk2NCIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNjA5NDAyOSwiZXhwIjoxNjM2MTgwNDI5LCJ1aWQiOjEzNX0.BuFSeeNhXkOqY7LndSvRQuzmn8VOWXHcZ7zMFaLc9fQ",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/client/accounts",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client",
+                "accounts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "loanAccounts",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNDU2NTM2MiwiZXhwIjoxNjM0NjUxNzYyLCJ1aWQiOjQwfQ.okhidLMsWiOTUXR7bMdb0ONg9wMepgBuGL-kMl9zNIs",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/client/loan-accounts",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client",
+                "loan-accounts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "clientAccountSummary",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNDI4MDM3MiwiZXhwIjoxNjM0MzY2NzcyLCJ1aWQiOjQwfQ.xoXcn162Zj2DQ7-N2jYFnJE7G8KWGBASdURivgTaQgo",
+                "type": "text"
+              },
+              {
+                "warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "accountId",
+                  "value": "366",
+                  "type": "text"
+                },
+                {
+                  "key": "productId",
+                  "value": "48",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/account-statement/index",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "account-statement",
+                "index"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createTestMembers",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNzU2MzU1MywiZXhwIjoxNjM3NjQ5OTUzLCJ1aWQiOjQwfQ.DCmdjPz5VMrwt3V9-2XMDXb6KfsByo1RLz-_rg7vhWY",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/client/create-test-members?upperLimit=1",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client",
+                "create-test-members"
+              ],
+              "query": [
+                {
+                  "key": "upperLimit",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "bulkDeposit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiVGVzdCBNZW1iZXIzMjYiLCJ1c2VybmFtZSI6Ik1lbWJlcjMyNiIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNTkyNjY5MiwiZXhwIjoxNjM2MDEzMDkyLCJ1aWQiOjEzMX0.ZYkAaQlm0fY2xJpaml-no5eQky-IXocvcp5VsbzZurk",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/client/bulk-deposit?lowerLimit=182",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client",
+                "bulk-deposit"
+              ],
+              "query": [
+                {
+                  "key": "lowerLimit",
+                  "value": "182"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "loanBalanceInquiry",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNTE0OTIxNSwiZXhwIjoxNjM1MjM1NjE1LCJ1aWQiOjQwfQ.Q_iXHCAXW_s4yXmYb8aUQV1HmnvjOLvFhrPnnufwGDM",
+                "type": "text"
+              },
+              {
+                "warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "accountId",
+                  "value": "504",
+                  "type": "text"
+                },
+                {
+                  "key": "productId",
+                  "value": "51",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/client/balance-inquiry",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client",
+                "balance-inquiry"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "accountBalanceInquiry",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNTE0OTIxNSwiZXhwIjoxNjM1MjM1NjE1LCJ1aWQiOjQwfQ.Q_iXHCAXW_s4yXmYb8aUQV1HmnvjOLvFhrPnnufwGDM",
+                "type": "text"
+              },
+              {
+                "warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "accountId",
+                  "value": "367",
+                  "type": "text"
+                },
+                {
+                  "key": "productId",
+                  "value": "49",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/client/balance-inquiry",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client",
+                "balance-inquiry"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "verifyUser",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYyODgzNzY1MCwiZXhwIjoxNjI4OTI0MDUwLCJ1aWQiOjQwfQ.ga94I_V9v75AXr4tsqCVakiavHKA0XK6cpSJsmDa0OA",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "password",
+                  "value": "1235",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/auth/verify-user",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "auth",
+                "verify-user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "accountWithdrawal",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYyODgzNzY1MCwiZXhwIjoxNjI4OTI0MDUwLCJ1aWQiOjQwfQ.ga94I_V9v75AXr4tsqCVakiavHKA0XK6cpSJsmDa0OA",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n     \"accountId\": 366,\r\n     \"amount\":2000,\r\n     \"providerId\":1,\r\n     \"providerPhone\":\"0716735875\" \r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/saving-account-withdrawal",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "saving-account-withdrawal"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "internalTransferPreview",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzMzAzMjA3NywiZXhwIjoxNjMzMTE4NDc3LCJ1aWQiOjQwfQ.w7oMTASVzbGBBNBb-JYpGbFVIGNMHOPClyQ5wURxIMY",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n     \"amount\":240,\r\n     \"fromAccountId\":366,\r\n     \"accountNumber\":\"1\",\r\n     \"transferType\":\"OTHER\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/internal-transfer/preview",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "internal-transfer",
+                "preview"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "internalTransferCommit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzMzAzMjA3NywiZXhwIjoxNjMzMTE4NDc3LCJ1aWQiOjQwfQ.w7oMTASVzbGBBNBb-JYpGbFVIGNMHOPClyQ5wURxIMY",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n     \"formId\": 12\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/internal-transfer/commit",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "internal-transfer",
+                "commit"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "paymentDeposit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYyODgzNzY1MCwiZXhwIjoxNjI4OTI0MDUwLCJ1aWQiOjQwfQ.ga94I_V9v75AXr4tsqCVakiavHKA0XK6cpSJsmDa0OA",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"accountId\": 366,\r\n    \"amount\":20000,\r\n     \"providerId\":1,\r\n    \"providerPhone\":\"0716735875\"  \r\n   \r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/payment-deposit",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "payment-deposit"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "transferShares",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYyODgzNzY1MCwiZXhwIjoxNjI4OTI0MDUwLCJ1aWQiOjQwfQ.ga94I_V9v75AXr4tsqCVakiavHKA0XK6cpSJsmDa0OA",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n     \"accountId\": 366,\r\n     \"amount\":5000\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/shares/transfer",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "shares",
+                "transfer"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "clientSavingAccounts",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNzQ3MzA5NywiZXhwIjoxNjM3NTU5NDk3LCJ1aWQiOjQwfQ.9YSMFO05X_P2yTpfrR1dr70E6zb1XrKboywctk5aHIQ",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseURL}}/saving-account/index",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "saving-account",
+                "index"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "clientFullStatementPreview",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNjYxODcwNywiZXhwIjoxNjM2NzA1MTA3LCJ1aWQiOjQwfQ.hwG0dt1aKNT0LFjVlGSc_ZzbmZWxZyz4E2_mElUcfEI",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"accountId\":366,\r\n    \"from\":\"01-07-2021\",\r\n    \"to\":\"28-07-2021\",\r\n    \"recipientEmail\":\"orikohjacktone@gmail.com\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/client/full-statement-preview",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client",
+                "full-statement-preview"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "clientFullStatementGenerate",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNjYxODcwNywiZXhwIjoxNjM2NzA1MTA3LCJ1aWQiOjQwfQ.hwG0dt1aKNT0LFjVlGSc_ZzbmZWxZyz4E2_mElUcfEI",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"formId\":220\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/client/full-statement-generate",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client",
+                "full-statement-generate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "clientResidenceInfoList",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYyODgzNzY1MCwiZXhwIjoxNjI4OTI0MDUwLCJ1aWQiOjQwfQ.ga94I_V9v75AXr4tsqCVakiavHKA0XK6cpSJsmDa0OA",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/client/residence-info",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client",
+                "residence-info"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "clientWorkInfoList",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYyODgzNzY1MCwiZXhwIjoxNjI4OTI0MDUwLCJ1aWQiOjQwfQ.ga94I_V9v75AXr4tsqCVakiavHKA0XK6cpSJsmDa0OA",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/client/work-info",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client",
+                "work-info"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "clientBankInfoList",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYyODgzNzY1MCwiZXhwIjoxNjI4OTI0MDUwLCJ1aWQiOjQwfQ.ga94I_V9v75AXr4tsqCVakiavHKA0XK6cpSJsmDa0OA",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/client/bank-info",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client",
+                "bank-info"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "clientPersonalnfoDetails",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYyODgzNzY1MCwiZXhwIjoxNjI4OTI0MDUwLCJ1aWQiOjQwfQ.ga94I_V9v75AXr4tsqCVakiavHKA0XK6cpSJsmDa0OA",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/client/personal-info",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client",
+                "personal-info"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "loanProductDetails",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNjA5MTI2MCwiZXhwIjoxNjM2MTc3NjYwLCJ1aWQiOjQwfQ.5Mx0p8UgFNRbJeFOIXxnRHd5_2ySND6wat8zA-wQBEA",
+                "type": "text"
+              },
+              {
+                "warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "productId",
+                  "value": "51",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan/product-details",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan",
+                "product-details"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "serviceProviders",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzMTUxMzg5NSwiZXhwIjoxNjMxNjAwMjk1LCJ1aWQiOjQwfQ.Zvjn1_d7X5Zv1D_AVRPJdfNGjm8GevhCYGaD57z5jw4",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/service-provider/index",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "service-provider",
+                "index"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "clientMinistatement",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYyOTEwMzYwOSwiZXhwIjoxNjI5MTkwMDA5LCJ1aWQiOjQwfQ.5vVYjbLDgniz2wULFanrrO3nQ3EfYiiNI7PniXNzypM",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "accountId",
+                  "value": "6",
+                  "type": "text"
+                },
+                {
+                  "key": "productId",
+                  "value": "57",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/client/mini-statement",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client",
+                "mini-statement"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "loanTopUp",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNTgzNzg4MCwiZXhwIjoxNjM1OTI0MjgwLCJ1aWQiOjQwfQ.TkbITpYPRIkIguATXvd2qxKaBYhE6D66pbh9w-9cVxk",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"productId\": 51,\r\n    \"amount\": 25000\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan/top-up",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan",
+                "top-up"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "loanProductDetails",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYyOTE4Mjg0MSwiZXhwIjoxNjI5MjY5MjQxLCJ1aWQiOjQwfQ.ESs8KdnZuskUiiz8JpHMtgYyBd1HmJlcw9eWVqacm2o",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"productId\": 51,\r\n    \"amount\": 25000\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan/top-up",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan",
+                "top-up"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "buyAirtime",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzMTAwNzI3OSwiZXhwIjoxNjMxMDkzNjc5LCJ1aWQiOjQwfQ.C0BOteaxs83JD5It9evxReb-r8M45_uoxHxQq-s19Iw",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n     \"accountId\": 366,\r\n     \"amount\":50,\r\n     \"providerId\":1,\r\n     \"providerPhone\":\"0716735875\" \r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/saving-account-withdrawal/buy-airtime",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "saving-account-withdrawal",
+                "buy-airtime"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "TestSMS",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\":\"janty\",\r\n    \"password\":\"b0c95e2144bdd4c86b94501a814f9bbd9d025651d8497df04b7b7f318fe5172088c491906756a67727f6ea964e9caf1c034bf9bb267b821e6b43cb3dcc569d0f\",\r\n    \"clientid\":5094,\r\n    \"message\":\"Testing\",\r\n    \"transactionID\":\"1234\",\r\n    \"from\":\"ECLECTICS\",\r\n    \"to\":\"254716735875\"\r\n}"
+            },
+            "url": {
+              "raw": "https://testgateway.ekenya.co.ke:8443/ServiceLayer/pgsms/send",
+              "protocol": "https",
+              "host": [
+                "testgateway",
+                "ekenya",
+                "co",
+                "ke"
+              ],
+              "port": "8443",
+              "path": [
+                "ServiceLayer",
+                "pgsms",
+                "send"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "replaceGuarantor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNTE0OTIxNSwiZXhwIjoxNjM1MjM1NjE1LCJ1aWQiOjQwfQ.Q_iXHCAXW_s4yXmYb8aUQV1HmnvjOLvFhrPnnufwGDM",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"guarantorId\":241,\r\n    \"remarks\":\"Sample Remarks\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan-guarantor/remove",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan-guarantor",
+                "remove"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "clearPhoneNumber",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "phone",
+                  "value": "11186093",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/auth/clear-phone-number",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "auth",
+                "clear-phone-number"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "removeAllTempGuarantors",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNjYxODcwNywiZXhwIjoxNjM2NzA1MTA3LCJ1aWQiOjQwfQ.hwG0dt1aKNT0LFjVlGSc_ZzbmZWxZyz4E2_mElUcfEI",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"productId\":51\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan-guarantor/remove-all-temp-guarantors",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan-guarantor",
+                "remove-all-temp-guarantors"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "removeAllTempGuarantors Copy",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiRGFtYXJpcyBNdWhpYSBtdWhpYWRhbWFyaXMiLCJ1c2VybmFtZSI6IjkxODkiLCJpc3MiOiJodHRwczpcL1wvdGVzdC1wb3J0YWwuZWtlbnlhLmNvLmtlIiwiYXVkIjoiaHR0cHM6XC9cL3Rlc3QtcG9ydGFsLmVrZW55YS5jby5rZSIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNjcxMjM3MSwiZXhwIjoxNjM2Nzk4NzcxLCJ1aWQiOjE1Nn0.Z0MwaR4fHFKch0fl_pAF3MV6-bVftm8B4-bDMi8lksI",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"productId\":45\r\n}"
+            },
+            "url": {
+              "raw": "{{tijaraUatURL}}/loan-guarantor/remove-all-temp-guarantors",
+              "host": [
+                "{{tijaraUatURL}}"
+              ],
+              "path": [
+                "loan-guarantor",
+                "remove-all-temp-guarantors"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateProfilePhoto",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiS2Vub3ggT2NoaWVuZyBKdW1hIiwidXNlcm5hbWUiOiJmMGNiIiwiaXNzIjoiaHR0cDpcL1wvbG9jYWxob3N0IiwiYXVkIjoiaHR0cDpcL1wvbG9jYWxob3N0IiwianRpIjoiZDY0OTI4NTZhNGE0YzEwNDY4MWRlNGYzYTJlMGY5ODkxIiwiaWF0IjoxNjM3ODI4MTI5LCJleHAiOjE2Mzc5MTQ1MjksInVpZCI6MTY4fQ.TPkhoWpGMvEVSQlevAGV-Xryof4CQMO5Agz81znuGhk",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "selfie_photo",
+                  "type": "file",
+                  "src": "/C:/Users/joriko/Documents/Projects/TIJARA/photos/selfie.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/client/update/basic",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client",
+                "update",
+                "basic"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "email",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiS2Vub3ggT2NoaWVuZyBKdW1hIiwidXNlcm5hbWUiOiJmMGNiIiwiaXNzIjoiaHR0cDpcL1wvbG9jYWxob3N0IiwiYXVkIjoiaHR0cDpcL1wvbG9jYWxob3N0IiwianRpIjoiZDY0OTI4NTZhNGE0YzEwNDY4MWRlNGYzYTJlMGY5ODkxIiwiaWF0IjoxNjM3ODI4MTI5LCJleHAiOjE2Mzc5MTQ1MjksInVpZCI6MTY4fQ.TPkhoWpGMvEVSQlevAGV-Xryof4CQMO5Agz81znuGhk",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"newEmail\":\"orikohjacktone@gmail.com\"\r\n}"
+                },
+                "url": {
+                  "raw": "{{baseURL}}/client/update/basic",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "client",
+                    "update",
+                    "basic"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Thu, 25 Nov 2021 08:46:46 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Apache/2.4.41 (Win64) PHP/7.3.9"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/7.3.9"
+                },
+                {
+                  "key": "Expires",
+                  "value": "Thu, 19 Nov 1981 08:52:00 GMT"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store, no-cache, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Access-Control-Expose-Headers",
+                  "value": "Access-Control-Allow-Origin, X-Pagination-Current-Page"
+                },
+                {
+                  "key": "Access-Control-Allow-Headers",
+                  "value": "Content-Type, Cache-Control, Pragma, Authorization, X-Requested-With, accept, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+                },
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "_csrf=gGj_eonhlMAUW08h37OhSS5aQfaxoHlA; path=/; HttpOnly; SameSite=Lax"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "115"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5, max=100"
+                },
+                {
+                  "key": "Connection",
+                  "value": "Keep-Alive"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=UTF-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 0,\n    \"message\": \"phone:The phone number is already used,email:The email address is already used\",\n    \"data\": null\n}"
+            },
+            {
+              "name": "profilePhoto",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiS2Vub3ggT2NoaWVuZyBKdW1hIiwidXNlcm5hbWUiOiJmMGNiIiwiaXNzIjoiaHR0cDpcL1wvbG9jYWxob3N0IiwiYXVkIjoiaHR0cDpcL1wvbG9jYWxob3N0IiwianRpIjoiZDY0OTI4NTZhNGE0YzEwNDY4MWRlNGYzYTJlMGY5ODkxIiwiaWF0IjoxNjM3ODI4MTI5LCJleHAiOjE2Mzc5MTQ1MjksInVpZCI6MTY4fQ.TPkhoWpGMvEVSQlevAGV-Xryof4CQMO5Agz81znuGhk",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "selfie_photo",
+                      "type": "file",
+                      "src": [
+                        "/C:/Users/joriko/Documents/Projects/TIJARA/photos/selfie.jpg"
+                      ]
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseURL}}/client/update/basic",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "client",
+                    "update",
+                    "basic"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Thu, 25 Nov 2021 09:02:55 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Apache/2.4.41 (Win64) PHP/7.3.9"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/7.3.9"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Access-Control-Expose-Headers",
+                  "value": "Access-Control-Allow-Origin, X-Pagination-Current-Page"
+                },
+                {
+                  "key": "Access-Control-Allow-Headers",
+                  "value": "Content-Type, Cache-Control, Pragma, Authorization, X-Requested-With, accept, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+                },
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "_csrf=tfvQ16mGXWti6VdS73rtLLyU4Jl9lmY3; path=/; HttpOnly; SameSite=Lax"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "169"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5, max=100"
+                },
+                {
+                  "key": "Connection",
+                  "value": "Keep-Alive"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=UTF-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 1,\n    \"message\": \"Success\",\n    \"data\": {\n        \"facePhotoUrl\": \"https://test-portal.ekenya.co.ke/tijara-api/uploads\\\\organizations\\\\013\\\\clients\\\\MN197S\\\\selfiePhotoPhoto.jpg\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "getBranches",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNzQ3MzA5NywiZXhwIjoxNjM3NTU5NDk3LCJ1aWQiOjQwfQ.9YSMFO05X_P2yTpfrR1dr70E6zb1XrKboywctk5aHIQ",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseURL}}/organization-branch/index",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "organization-branch",
+                "index"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "customerRequests",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNzQ3MzA5NywiZXhwIjoxNjM3NTU5NDk3LCJ1aWQiOjQwfQ.9YSMFO05X_P2yTpfrR1dr70E6zb1XrKboywctk5aHIQ",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseURL}}/client-request/index",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client-request",
+                "index"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "chequeRequestPreview",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNzQ3MzA5NywiZXhwIjoxNjM3NTU5NDk3LCJ1aWQiOjQwfQ.9YSMFO05X_P2yTpfrR1dr70E6zb1XrKboywctk5aHIQ",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"requestType\":\"CHEQUE\",\r\n    \"payee\":\"0716735875\",\r\n    \"collectionDate\":\"12-12-2021\",\r\n    \"branchId\":12,\r\n    \"amount\":10000\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/client-request/preview",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client-request",
+                "preview"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "atmCardRequestPreview",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNzQ3MzA5NywiZXhwIjoxNjM3NTU5NDk3LCJ1aWQiOjQwfQ.9YSMFO05X_P2yTpfrR1dr70E6zb1XrKboywctk5aHIQ",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"requestType\":\"ATM_CARD\",\r\n    \"branchId\":12,\r\n    \"accountNoToLink\":\"FS/001/DP\",\r\n    \"isNew\":1\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/client-request/preview",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client-request",
+                "preview"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "memberShipCardRequestPreview",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNzQ3MzA5NywiZXhwIjoxNjM3NTU5NDk3LCJ1aWQiOjQwfQ.9YSMFO05X_P2yTpfrR1dr70E6zb1XrKboywctk5aHIQ",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"requestType\":\"MEMBER_CARD\",\r\n    \"branchId\":12,\r\n    \"isNew\":1\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/client-request/preview",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client-request",
+                "preview"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "requestCommit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNzQ3MzA5NywiZXhwIjoxNjM3NTU5NDk3LCJ1aWQiOjQwfQ.9YSMFO05X_P2yTpfrR1dr70E6zb1XrKboywctk5aHIQ",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"formId\":244\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/client-request/commit",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client-request",
+                "commit"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createComplaint",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNzQ3MzA5NywiZXhwIjoxNjM3NTU5NDk3LCJ1aWQiOjQwfQ.9YSMFO05X_P2yTpfrR1dr70E6zb1XrKboywctk5aHIQ",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"subject\":\"Delay\",\r\n    \"branchId\":12,\r\n    \"description\":\"The customer cares are taking too long to serve clients\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/client-complaint/create",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client-complaint",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Shares",
+      "item": [
+        {
+          "name": "requestDetails",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiV2FtYnVpIERhbWFyaXMiLCJ1c2VybmFtZSI6IndhbWJ1aUQiLCJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJhdWQiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJqdGkiOiJkNjQ5Mjg1NmE0YTRjMTA0NjgxZGU0ZjNhMmUwZjk4OTEiLCJpYXQiOjE2MzIyODkwMTIsImV4cCI6MTYzMjM3NTQxMiwidWlkIjo5M30.WNX0t8YA-oxskol-ftb79PiJVF0AZm_dE_OtvRborks",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"transactionCode\":\"3LXNGAYP\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/shares/request-details",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "shares",
+                "request-details"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "commisionRequest",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiV2FtYnVpIERhbWFyaXMiLCJ1c2VybmFtZSI6IndhbWJ1aUQiLCJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJhdWQiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJqdGkiOiJkNjQ5Mjg1NmE0YTRjMTA0NjgxZGU0ZjNhMmUwZjk4OTEiLCJpYXQiOjE2MzIyODkwMTIsImV4cCI6MTYzMjM3NTQxMiwidWlkIjo5M30.WNX0t8YA-oxskol-ftb79PiJVF0AZm_dE_OtvRborks",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"transactionCode\":\"69NB07VY\",\r\n    \"remarks\": \"This took alot of  time to be accepted\",\r\n    \"responseType\":1\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/shares/commission-request",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "shares",
+                "commission-request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "memberResponseType",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiV2FtYnVpIERhbWFyaXMiLCJ1c2VybmFtZSI6IndhbWJ1aUQiLCJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJhdWQiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJqdGkiOiJkNjQ5Mjg1NmE0YTRjMTA0NjgxZGU0ZjNhMmUwZjk4OTEiLCJpYXQiOjE2MzIyODkwMTIsImV4cCI6MTYzMjM3NTQxMiwidWlkIjo5M30.WNX0t8YA-oxskol-ftb79PiJVF0AZm_dE_OtvRborks",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseURL}}/shares/member-response-type",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "shares",
+                "member-response-type"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "commitRequest",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiV2FtYnVpIERhbWFyaXMiLCJ1c2VybmFtZSI6IndhbWJ1aUQiLCJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJhdWQiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJqdGkiOiJkNjQ5Mjg1NmE0YTRjMTA0NjgxZGU0ZjNhMmUwZjk4OTEiLCJpYXQiOjE2MzIyODkwMTIsImV4cCI6MTYzMjM3NTQxMiwidWlkIjo5M30.WNX0t8YA-oxskol-ftb79PiJVF0AZm_dE_OtvRborks",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n        \"numberOfShares\": 270,\r\n        \"valuePerShare\": 1,\r\n        \"currency\": \"KES\",\r\n        \"charges\": 0,\r\n        \"exciseDuty\": 0,\r\n        \"transactionType\": 2,\r\n        \"fromAccountId\": 7,\r\n        \"toClientId\": 110,\r\n        \"transactionDate\": \"2021-09-22\",\r\n        \"transactionCode\": \"HS28K0IF\",\r\n        \"orgId\": 12,\r\n        \"fromClientId\": 157\r\n    }"
+            },
+            "url": {
+              "raw": "{{baseURL}}/shares/commit-request",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "shares",
+                "commit-request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "requestPreview",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiV2FtYnVpIERhbWFyaXMiLCJ1c2VybmFtZSI6IndhbWJ1aUQiLCJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJhdWQiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJqdGkiOiJkNjQ5Mjg1NmE0YTRjMTA0NjgxZGU0ZjNhMmUwZjk4OTEiLCJpYXQiOjE2MzIyODkwMTIsImV4cCI6MTYzMjM3NTQxMiwidWlkIjo5M30.WNX0t8YA-oxskol-ftb79PiJVF0AZm_dE_OtvRborks",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"recipientMemberNumber\":\"110\",\r\n    \"numberOfShares\": 200,\r\n    \"transactionType\":3\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/shares/request-preview",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "shares",
+                "request-preview"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "memberRequestType",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiV2FtYnVpIERhbWFyaXMiLCJ1c2VybmFtZSI6IndhbWJ1aUQiLCJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJhdWQiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJqdGkiOiJkNjQ5Mjg1NmE0YTRjMTA0NjgxZGU0ZjNhMmUwZjk4OTEiLCJpYXQiOjE2MzIyODkwMTIsImV4cCI6MTYzMjM3NTQxMiwidWlkIjo5M30.WNX0t8YA-oxskol-ftb79PiJVF0AZm_dE_OtvRborks",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseURL}}/shares/member-request-type",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "shares",
+                "member-request-type"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "sharesRequests",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzMjM3NzQyMiwiZXhwIjoxNjMyNDYzODIyLCJ1aWQiOjQwfQ.fN_hkC4m2DTUc-I9vflu_v3RA0dJhEbqIbqeIMXnZ04",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseURL}}/shares/requests",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "shares",
+                "requests"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "phoneNumberLookup",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzMjIzMzk4NywiZXhwIjoxNjMyMzIwMzg3LCJ1aWQiOjQwfQ.2DlBkyuawq134EBFZtg65p68AWEuQecpLo3SMaeSi6o",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"phoneNumber\":\"0734567876\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/shares/member-lookup",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "shares",
+                "member-lookup"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "memberNumberLookup",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzMjIwNjY4OCwiZXhwIjoxNjMyMjkzMDg4LCJ1aWQiOjQwfQ.Vo6Zh4QehsHdLNyepaVHA5taTJfVNs3Upy28O9oC2ls",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"memberNumber\":\"148\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/shares/member-lookup",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "shares",
+                "member-lookup"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "LoanModule",
+      "item": [
+        {
+          "name": "organizationLoanProducts",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNzIzNDI1OCwiZXhwIjoxNjM3MzIwNjU4LCJ1aWQiOjQwfQ.jYDkwIeZ3CLaJC_pkt7hxCjMYbkn8L-7ffenyNZw700",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/loan/products",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan",
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "loanCalculator",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNTgzNzg4MCwiZXhwIjoxNjM1OTI0MjgwLCJ1aWQiOjQwfQ.TkbITpYPRIkIguATXvd2qxKaBYhE6D66pbh9w-9cVxk",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"productId\": 51,\r\n    \"amount\": 26000,\r\n    \"repaymentPeriod\":1\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan/calculator",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan",
+                "calculator"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deactivateLoan",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNTE0OTIxNSwiZXhwIjoxNjM1MjM1NjE1LCJ1aWQiOjQwfQ.Q_iXHCAXW_s4yXmYb8aUQV1HmnvjOLvFhrPnnufwGDM",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"loanId\": 507\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan/deactivate-loan",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan",
+                "deactivate-loan"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "loanApplicationPreview",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNzIzNDI1OCwiZXhwIjoxNjM3MzIwNjU4LCJ1aWQiOjQwfQ.jYDkwIeZ3CLaJC_pkt7hxCjMYbkn8L-7ffenyNZw700",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"productId\": 51,\r\n    \"amount\": 25000,\r\n    \"depositAccountId\":366,\r\n    \"applicationReason\":\"Testing Loan\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan/application-preview",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan",
+                "application-preview"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "loanApplicationCommit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNzIzNDI1OCwiZXhwIjoxNjM3MzIwNjU4LCJ1aWQiOjQwfQ.jYDkwIeZ3CLaJC_pkt7hxCjMYbkn8L-7ffenyNZw700",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"formId\": 232\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan/application-commit",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan",
+                "application-commit"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "activeLoans",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNzIzNDI1OCwiZXhwIjoxNjM3MzIwNjU4LCJ1aWQiOjQwfQ.jYDkwIeZ3CLaJC_pkt7hxCjMYbkn8L-7ffenyNZw700",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"pendingDisbursement\":1\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan/active-loans",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan",
+                "active-loans"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "loanStatement",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNTE0OTIxNSwiZXhwIjoxNjM1MjM1NjE1LCJ1aWQiOjQwfQ.Q_iXHCAXW_s4yXmYb8aUQV1HmnvjOLvFhrPnnufwGDM",
+                "type": "text"
+              },
+              {
+                "warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "loanAccountId",
+                  "value": "209",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan/statement",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan",
+                "statement"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "loanRepaymentFromAccountPreview",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNTE0OTIxNSwiZXhwIjoxNjM1MjM1NjE1LCJ1aWQiOjQwfQ.Q_iXHCAXW_s4yXmYb8aUQV1HmnvjOLvFhrPnnufwGDM",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"loanId\": 504,\r\n    \"amount\":300,\r\n    \"accountId\":366,\r\n    \"payAll\":0\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan/repayment-preview",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan",
+                "repayment-preview"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "loanRepaymentFromSPPreview",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNTE0OTIxNSwiZXhwIjoxNjM1MjM1NjE1LCJ1aWQiOjQwfQ.Q_iXHCAXW_s4yXmYb8aUQV1HmnvjOLvFhrPnnufwGDM",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"loanId\": 504,\r\n    \"amount\":1,\r\n    \"providerId\":19,\r\n    \"providerPhone\":\"0716735875\",\r\n    \"payAll\":0\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan/repayment-preview",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan",
+                "repayment-preview"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "loanRepaymentCommit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNTE0OTIxNSwiZXhwIjoxNjM1MjM1NjE1LCJ1aWQiOjQwfQ.Q_iXHCAXW_s4yXmYb8aUQV1HmnvjOLvFhrPnnufwGDM",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"formId\": 156\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan/repayment-commit",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan",
+                "repayment-commit"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "myGuarantors",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiVGVzdCBNZW1iZXIyMzgiLCJ1c2VybmFtZSI6Ik1lbWJlcjIzOCIsImlzcyI6Imh0dHBzOlwvXC90ZXN0LXBvcnRhbC5la2VueWEuY28ua2UiLCJhdWQiOiJodHRwczpcL1wvdGVzdC1wb3J0YWwuZWtlbnlhLmNvLmtlIiwianRpIjoiZDY0OTI4NTZhNGE0YzEwNDY4MWRlNGYzYTJlMGY5ODkxIiwiaWF0IjoxNjM3MjI5MTEyLCJleHAiOjE2MzczMTU1MTIsInVpZCI6MTM4fQ.s82LmVWRicLPvdhPAP8KoBhZ6KsTDGIXqxNFxxMs2dY",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{tijaraUatURL}}/loan-guarantor/my-guarantors",
+              "host": [
+                "{{tijaraUatURL}}"
+              ],
+              "path": [
+                "loan-guarantor",
+                "my-guarantors"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "requestGuarantorPreview",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiV2FtYnVpIERhbWFyaXMiLCJ1c2VybmFtZSI6IndhbWJ1aUQiLCJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJhdWQiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJqdGkiOiJkNjQ5Mjg1NmE0YTRjMTA0NjgxZGU0ZjNhMmUwZjk4OTEiLCJpYXQiOjE2MzUxODIxNDAsImV4cCI6MTYzNTI2ODU0MCwidWlkIjo5M30.wKJKR49wMKvUTqp0_nlGhJbv5w3n5hS1cOe7CQRBe5Y",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"memberNumber\":\"148\",\r\n    \"amount\": 1000,\r\n    \"loanId\":512\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan-guarantor/request-preview",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan-guarantor",
+                "request-preview"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "commitRequest",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiV2FtYnVpIERhbWFyaXMiLCJ1c2VybmFtZSI6IndhbWJ1aUQiLCJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJhdWQiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJqdGkiOiJkNjQ5Mjg1NmE0YTRjMTA0NjgxZGU0ZjNhMmUwZjk4OTEiLCJpYXQiOjE2MzUxODIxNDAsImV4cCI6MTYzNTI2ODU0MCwidWlkIjo5M30.wKJKR49wMKvUTqp0_nlGhJbv5w3n5hS1cOe7CQRBe5Y",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"formId\":183\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan-guarantor/commit-request",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan-guarantor",
+                "commit-request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "cancelRequest",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNTE0OTIxNSwiZXhwIjoxNjM1MjM1NjE1LCJ1aWQiOjQwfQ.Q_iXHCAXW_s4yXmYb8aUQV1HmnvjOLvFhrPnnufwGDM",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"requestId\":247,\r\n    \"responseType\":2,\r\n    \"remarks\":\"Testing Canceling\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan-guarantor/commission-request",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan-guarantor",
+                "commission-request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "loansGuaranteed",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNTkzNDc4MywiZXhwIjoxNjM2MDIxMTgzLCJ1aWQiOjQwfQ.ofIazYnadlsAqxlCtDj4HPx5ZD5X0xR1onz2xeqYJyM",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"isNew\":1\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan-guarantor/loans-guaranteed",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan-guarantor",
+                "loans-guaranteed"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "acceptRequest",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNTE0OTIxNSwiZXhwIjoxNjM1MjM1NjE1LCJ1aWQiOjQwfQ.Q_iXHCAXW_s4yXmYb8aUQV1HmnvjOLvFhrPnnufwGDM",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"requestId\":248,\r\n    \"responseType\":1,\r\n    \"remarks\":\"Testing Acceptance\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan-guarantor/commission-request",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan-guarantor",
+                "commission-request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "acceptAllRequests",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNTIzNTk3MywiZXhwIjoxNjM1MzIyMzczLCJ1aWQiOjQwfQ.CSILgDsoGPjrbuRdui9V07BhieHuv8fpJdLi7JCBrL8",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"responseType\":1,\r\n    \"remarks\":\"Testing All Acceptance\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan-guarantor/commission-all",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan-guarantor",
+                "commission-all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "rejectRequest",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNTkzNDc4MywiZXhwIjoxNjM2MDIxMTgzLCJ1aWQiOjQwfQ.ofIazYnadlsAqxlCtDj4HPx5ZD5X0xR1onz2xeqYJyM",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"requestId\":261,\r\n    \"responseType\":3,\r\n    \"remarks\":\"Testing Rejection\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan-guarantor/commission-request",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan-guarantor",
+                "commission-request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "rejectAllRequests",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNTE0OTIxNSwiZXhwIjoxNjM1MjM1NjE1LCJ1aWQiOjQwfQ.Q_iXHCAXW_s4yXmYb8aUQV1HmnvjOLvFhrPnnufwGDM",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"responseType\":3,\r\n    \"remarks\":\"Testing All Rejection\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan-guarantor/commission-all",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan-guarantor",
+                "commission-all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "responseType",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNTE0OTIxNSwiZXhwIjoxNjM1MjM1NjE1LCJ1aWQiOjQwfQ.Q_iXHCAXW_s4yXmYb8aUQV1HmnvjOLvFhrPnnufwGDM",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan-guarantor/response-type",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan-guarantor",
+                "response-type"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "tempGuarantors",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNTcwOTQxMiwiZXhwIjoxNjM1Nzk1ODEyLCJ1aWQiOjQwfQ.UuuJZqqsLEfd9SwYtm2C4xvS7fyZU1ragnyuUUPznT4",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"productId\":51\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan-guarantor/temp-guarantors",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan-guarantor",
+                "temp-guarantors"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "tempRequestGuarantorPreview",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNzIzNDI1OCwiZXhwIjoxNjM3MzIwNjU4LCJ1aWQiOjQwfQ.jYDkwIeZ3CLaJC_pkt7hxCjMYbkn8L-7ffenyNZw700",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"memberNumber\":\"MN196S\",\r\n    \"amount\":12500,\r\n    \"productId\":51\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan-guarantor/add-temp-guarantor-request-preview",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan-guarantor",
+                "add-temp-guarantor-request-preview"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "tempRequestCommit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNzIzNDI1OCwiZXhwIjoxNjM3MzIwNjU4LCJ1aWQiOjQwfQ.jYDkwIeZ3CLaJC_pkt7hxCjMYbkn8L-7ffenyNZw700",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"formId\":231\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan-guarantor/add-temp-guarantor-request-commit",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan-guarantor",
+                "add-temp-guarantor-request-commit"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "removeTempGuarantor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNTcwOTQxMiwiZXhwIjoxNjM1Nzk1ODEyLCJ1aWQiOjQwfQ.UuuJZqqsLEfd9SwYtm2C4xvS7fyZU1ragnyuUUPznT4",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"tempGuarantorId\":1\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan-guarantor/remove-temp-guarantor",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan-guarantor",
+                "remove-temp-guarantor"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateTempGuarantor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNTkzNDc4MywiZXhwIjoxNjM2MDIxMTgzLCJ1aWQiOjQwfQ.ofIazYnadlsAqxlCtDj4HPx5ZD5X0xR1onz2xeqYJyM",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"tempGuarantorId\":11,\r\n    \"amount\":5000\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/loan-guarantor/update-temp-guarantor",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loan-guarantor",
+                "update-temp-guarantor"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "onboarding",
+      "item": [
+        {
+          "name": "getAssociatedOrgs",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"phone\":\"0716735875\"\r\n}"
+            },
+            "url": {
+              "raw": "{{tlocalURL}}/auth/get-associated-orgs",
+              "host": [
+                "{{tlocalURL}}"
+              ],
+              "path": [
+                "auth",
+                "get-associated-orgs"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "beforeLogin",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"phone\":\"0716735875\"\r\n}"
+                },
+                "url": {
+                  "raw": "{{baseURL}}/auth/get-associated-orgs",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "get-associated-orgs"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Thu, 25 Nov 2021 07:05:31 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Apache/2.4.41 (Win64) PHP/7.3.9"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/7.3.9"
+                },
+                {
+                  "key": "Expires",
+                  "value": "Thu, 19 Nov 1981 08:52:00 GMT"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store, no-cache, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Access-Control-Expose-Headers",
+                  "value": "Access-Control-Allow-Origin, X-Pagination-Current-Page"
+                },
+                {
+                  "key": "Access-Control-Allow-Headers",
+                  "value": "Content-Type, Cache-Control, Pragma, Authorization, X-Requested-With, accept, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+                },
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "231"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5, max=100"
+                },
+                {
+                  "key": "Connection",
+                  "value": "Keep-Alive"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=UTF-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 1,\n    \"message\": \"There is (1) organization linked to your phone number. Proceed to  login\",\n    \"data\": [\n        {\n            \"org_id\": 12,\n            \"name\": \"MONEYMART\",\n            \"username\": \"5cc5\",\n            \"firstName\": \"Test4\",\n            \"isSacco\": true,\n            \"website\": \"http://www.maendeleo.co.ke\"\n        }\n    ]\n}"
+            },
+            {
+              "name": "afterLogin",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"phone\":\"0716735875\",\r\n    \"isLogin\":0\r\n}"
+                },
+                "url": {
+                  "raw": "{{baseURL}}/auth/get-associated-orgs",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "get-associated-orgs"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Thu, 25 Nov 2021 07:11:17 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Apache/2.4.41 (Win64) PHP/7.3.9"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/7.3.9"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Access-Control-Expose-Headers",
+                  "value": "Access-Control-Allow-Origin, X-Pagination-Current-Page"
+                },
+                {
+                  "key": "Access-Control-Allow-Headers",
+                  "value": "Content-Type, Cache-Control, Pragma, Authorization, X-Requested-With, accept, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+                },
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "166"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5, max=100"
+                },
+                {
+                  "key": "Connection",
+                  "value": "Keep-Alive"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=UTF-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 1,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"org_id\": 12,\n            \"name\": \"MONEYMART\",\n            \"username\": \"5cc5\",\n            \"firstName\": \"Test4\",\n            \"isSacco\": true,\n            \"website\": \"http://www.maendeleo.co.ke\"\n        }\n    ]\n}"
+            },
+            {
+              "name": "notYetJoined",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"phone\":\"0716735875\",\r\n    \"notYetJoined\":1\r\n}"
+                },
+                "url": {
+                  "raw": "{{baseURL}}/auth/get-associated-orgs",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "get-associated-orgs"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Thu, 25 Nov 2021 07:13:02 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Apache/2.4.41 (Win64) PHP/7.3.9"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/7.3.9"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Access-Control-Expose-Headers",
+                  "value": "Access-Control-Allow-Origin, X-Pagination-Current-Page"
+                },
+                {
+                  "key": "Access-Control-Allow-Headers",
+                  "value": "Content-Type, Cache-Control, Pragma, Authorization, X-Requested-With, accept, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+                },
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "739"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5, max=100"
+                },
+                {
+                  "key": "Connection",
+                  "value": "Keep-Alive"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=UTF-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 1,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"id\": 21,\n            \"name\": \"SAMCO\",\n            \"isSacco\": false,\n            \"website\": null\n        },\n        {\n            \"id\": 22,\n            \"name\": \"TESTORG\",\n            \"isSacco\": false,\n            \"website\": \"http://www.testorg.co.ke\"\n        },\n        {\n            \"id\": 35,\n            \"name\": \"JIJENGE\",\n            \"isSacco\": false,\n            \"website\": null\n        },\n        {\n            \"id\": 36,\n            \"name\": \"QUICKYTECH\",\n            \"isSacco\": false,\n            \"website\": null\n        },\n        {\n            \"id\": 37,\n            \"name\": \"TESTORG4\",\n            \"isSacco\": true,\n            \"website\": null\n        },\n        {\n            \"id\": 38,\n            \"name\": \"PAMOJA\",\n            \"isSacco\": false,\n            \"website\": \"http://www.pamoja.co.ke\"\n        },\n        {\n            \"id\": 39,\n            \"name\": \"MUSONI\",\n            \"isSacco\": false,\n            \"website\": \"http://www.watalii.co.ke\"\n        },\n        {\n            \"id\": 40,\n            \"name\": \"TEST MFI\",\n            \"isSacco\": false,\n            \"website\": null\n        },\n        {\n            \"id\": 41,\n            \"name\": \"TAIFA\",\n            \"isSacco\": true,\n            \"website\": null\n        },\n        {\n            \"id\": 42,\n            \"name\": \"CARITAS\",\n            \"isSacco\": false,\n            \"website\": null\n        },\n        {\n            \"id\": 51,\n            \"name\": \"SUBARU\",\n            \"isSacco\": true,\n            \"website\": null\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "verifyOTPCode",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiT3JnYW5pemF0aW9uIEFkbWluIiwidXNlcm5hbWUiOiJlcmlja28iLCJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJhdWQiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJqdGkiOiJkNjQ5Mjg1NmE0YTRjMTA0NjgxZGU0ZjNhMmUwZjk4OTEiLCJpYXQiOjE2MjEzMjQ5NjQsImV4cCI6MTYyMTQxMTM2NCwidWlkIjozfQ.gWoTOHSn5S3MTlZnVr7IZELuFI4Xrtz3E9B1f1Q18Bo",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "token",
+                  "value": "712023",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{tlocalURL}}/auth/verify-code",
+              "host": [
+                "{{tlocalURL}}"
+              ],
+              "path": [
+                "auth",
+                "verify-code"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "resendOtp",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiT3JnYW5pemF0aW9uIEFkbWluIiwidXNlcm5hbWUiOiJlcmlja28iLCJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJhdWQiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJqdGkiOiJkNjQ5Mjg1NmE0YTRjMTA0NjgxZGU0ZjNhMmUwZjk4OTEiLCJpYXQiOjE2MjEzMjQ5NjQsImV4cCI6MTYyMTQxMTM2NCwidWlkIjozfQ.gWoTOHSn5S3MTlZnVr7IZELuFI4Xrtz3E9B1f1Q18Bo",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": " {\r\n     \"username\":\"aizo\"\r\n }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{tlocalURL}}/auth/resend-otp",
+              "host": [
+                "{{tlocalURL}}"
+              ],
+              "path": [
+                "auth",
+                "resend-otp"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "clientLogin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiVGVzdCBNZW1iZXI5MTAiLCJ1c2VybmFtZSI6Ik1lbWJlcjkxMCIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNjAwNjM3NiwiZXhwIjoxNjM2MDkyNzc2LCJ1aWQiOjEzMH0.Yl8cfwZx8FtvjOpI8BkwBI4rJWKa2kEtzWrU6-IWVRk",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{tlocalURL}}/auth/login",
+              "host": [
+                "{{tlocalURL}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createClientBasicInitial",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNjYxODcwNywiZXhwIjoxNjM2NzA1MTA3LCJ1aWQiOjQwfQ.hwG0dt1aKNT0LFjVlGSc_ZzbmZWxZyz4E2_mElUcfEI",
+                "type": "text"
+              },
+              {
+                "warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "first_name",
+                  "value": "Benard",
+                  "type": "text"
+                },
+                {
+                  "key": "last_name",
+                  "value": "Oriko",
+                  "type": "text"
+                },
+                {
+                  "key": "phone",
+                  "value": "0716797321",
+                  "type": "text"
+                },
+                {
+                  "key": "national_identity",
+                  "value": "212134562",
+                  "type": "text"
+                },
+                {
+                  "key": "dob",
+                  "value": "06-01-1993",
+                  "type": "text"
+                },
+                {
+                  "key": "gender",
+                  "value": "male",
+                  "type": "text"
+                },
+                {
+                  "key": "org_id",
+                  "value": "12",
+                  "type": "text"
+                },
+                {
+                  "key": "middle_name",
+                  "value": "Ochieng",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{tlocalURL}}/client/create/basic/initial",
+              "host": [
+                "{{tlocalURL}}"
+              ],
+              "path": [
+                "client",
+                "create",
+                "basic",
+                "initial"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createClientBasicInfoFinal",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiTW9zZXMgT2Nob2xhIiwidXNlcm5hbWUiOiJtb3NlcyIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImF1ZCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSIsImlhdCI6MTYzNjYxODcwNywiZXhwIjoxNjM2NzA1MTA3LCJ1aWQiOjQwfQ.hwG0dt1aKNT0LFjVlGSc_ZzbmZWxZyz4E2_mElUcfEI",
+                "type": "text"
+              },
+              {
+                "warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "form_id",
+                  "value": "246",
+                  "type": "text"
+                },
+                {
+                  "key": "tax_pin",
+                  "value": "B0098786X",
+                  "type": "text"
+                },
+                {
+                  "key": "email",
+                  "value": "benard2@gmail.com",
+                  "type": "text"
+                },
+                {
+                  "key": "id_front_photo",
+                  "type": "file",
+                  "value": null
+                },
+                {
+                  "key": "id_back_photo",
+                  "type": "file",
+                  "value": null
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/client/create/basic/final",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "client",
+                "create",
+                "basic",
+                "final"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "validateDefaultPin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6ImQ2NDkyODU2YTRhNGMxMDQ2ODFkZTRmM2EyZTBmOTg5MSJ9.eyJuYW1lIjoiT3JnYW5pemF0aW9uIEFkbWluIiwidXNlcm5hbWUiOiJlcmlja28iLCJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJhdWQiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJqdGkiOiJkNjQ5Mjg1NmE0YTRjMTA0NjgxZGU0ZjNhMmUwZjk4OTEiLCJpYXQiOjE2MjEzMjQ5NjQsImV4cCI6MTYyMTQxMTM2NCwidWlkIjozfQ.gWoTOHSn5S3MTlZnVr7IZELuFI4Xrtz3E9B1f1Q18Bo",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "defaultPin",
+                  "value": "4189",
+                  "type": "text"
+                },
+                {
+                  "key": "username",
+                  "value": "moses",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/auth/validate-default-pin",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "auth",
+                "validate-default-pin"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "clientChangeDefaultPin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\":\"moses\",\r\n    \"password\":\"1234\",\r\n    \"confirm\":\"1234\"\r\n}"
+            },
+            "url": {
+              "raw": "{{tlocalURL}}/auth/change-default-pin",
+              "host": [
+                "{{tlocalURL}}"
+              ],
+              "path": [
+                "auth",
+                "change-default-pin"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "resetPin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "resetOption",
+                  "value": "verifyIdentity",
+                  "type": "default"
+                },
+                {
+                  "key": "identifierNumber",
+                  "value": "SH0BXJGA",
+                  "type": "default"
+                },
+                {
+                  "key": "selfiePhoto",
+                  "type": "file",
+                  "value": null
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/auth/reset-pin",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "auth",
+                "reset-pin"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "localhostBaseUrl",
+      "value": "http://localhost/saccohub-b4/api/"
+    },
+    {
+      "key": "test",
+      "value": "http://localhost/saccohub-b4/api/",
+      "type": "string"
+    }
+  ]
+}

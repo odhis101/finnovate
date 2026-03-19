@@ -1,101 +1,113 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  Animated,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { OnboardingStackParamList } from '../../../navigation/types';
 import { typography, colors } from '../../../theme';
-import { SaccoCard } from '../../../shared/components';
+import { SaccoCard, AppBackground, BackButton } from '../../../shared/components';
+import { useOnboardingStore } from '../../../store/onboardingStore';
+import { useOrganisations } from '../../../hooks/useOnboarding';
+import type { Organisation } from '../../../services/api/types';
 
 type SaccoSelectionScreenNavigationProp = NativeStackNavigationProp<OnboardingStackParamList, 'SaccoSelection'>;
 
-interface SaccoData {
-  id: string;
-  name: string;
-  description: string;
-  logo: any;
-}
+const getGreeting = () => {
+  const hour = new Date().getHours();
+  if (hour < 12) return 'morning';
+  if (hour < 17) return 'afternoon';
+  return 'evening';
+};
 
-const saccoData: SaccoData[] = [
-  {
-    id: '1',
-    name: 'Stima SACCO',
-    description: 'Access your Stima SACCO account',
-    logo: require('../../../../assets/stimaSacco.png'),
-  },
-  {
-    id: '2',
-    name: 'Tower SACCO',
-    description: 'Access your Tower SACCO account',
-    logo: require('../../../../assets/towerSacco.png'),
-  },
-  {
-    id: '3',
-    name: 'Fortune SACCO',
-    description: 'Access your Kenya Police SACCO account',
-    logo: require('../../../../assets/fortuneSacco.png'),
-  },
-];
+const SaccoCardSkeleton = () => {
+  const opacity = useRef(new Animated.Value(0.4)).current;
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(opacity, { toValue: 1, duration: 700, useNativeDriver: true }),
+        Animated.timing(opacity, { toValue: 0.4, duration: 700, useNativeDriver: true }),
+      ])
+    ).start();
+  }, []);
+
+  return (
+    <Animated.View style={[styles.skeletonCard, { opacity }]}>
+      <View style={styles.skeletonLogo} />
+      <View style={styles.skeletonText}>
+        <View style={styles.skeletonLine} />
+        <View style={[styles.skeletonLine, { width: '60%', marginTop: 8 }]} />
+      </View>
+    </Animated.View>
+  );
+};
 
 export const SaccoSelectionScreen = () => {
   const navigation = useNavigation<SaccoSelectionScreenNavigationProp>();
+  const setSelectedOrg = useOnboardingStore((s) => s.setSelectedOrg);
+  const { data: organisations = [], isLoading } = useOrganisations();
 
-  const handleBack = () => {
-    navigation.goBack();
-  };
+  const handleBack = () => navigation.goBack();
 
-  const handleSaccoPress = (saccoId: string) => {
-    // Navigate to one-time PIN entry after SACCO selection
-    navigation.navigate('PINEntry', {
-      title: 'Enter Your one-time PIN',
-      subtitle: 'Please enter the one-time PIN sent to you',
-      pinLength: 4,
-      mode: 'enter',
-      // Don't pass nextScreen - let the mode handle navigation automatically
-    });
+  const handleOrgPress = (org: Organisation) => {
+    setSelectedOrg(org as any);
+    navigation.navigate('CreateAccount');
   };
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.backButton} onPress={handleBack}>
-        <Text style={styles.backArrow}>←</Text>
-      </TouchableOpacity>
+    <AppBackground>
+      <View style={styles.container}>
+        <BackButton style={styles.backButton} onPress={handleBack} />
 
-      <ScrollView
-        style={styles.scrollView}
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
-        <Image
-          source={require('../../../../assets/logo.png')}
-          style={styles.logo}
-          resizeMode="contain"
-        />
+        <ScrollView
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+        >
+          <Image
+            source={require('../../../../assets/logo.png')}
+            style={styles.logo}
+            resizeMode="contain"
+          />
 
-        <Text style={styles.welcomeText}>Welcome to Finovate</Text>
-        <Text style={styles.subtitle}>
-          Here are your Sacco's! Select one to proceed To your account
-        </Text>
+          <Text style={styles.welcomeText}>Join a SACCO</Text>
 
-        <View style={styles.saccoList}>
-          {saccoData.map((sacco) => (
-            <SaccoCard
-              key={sacco.id}
-              name={sacco.name}
-              description={sacco.description}
-              logo={sacco.logo}
-              onPress={() => handleSaccoPress(sacco.id)}
-            />
-          ))}
-        </View>
-      </ScrollView>
-    </View>
+          <View style={styles.saccoList}>
+            {isLoading && [0, 1, 2].map((i) => <SaccoCardSkeleton key={i} />)}
+
+            {!isLoading && organisations.length === 0 && (
+              <View style={styles.errorContainer}>
+                <Text style={styles.errorText}>No SACCOs available.</Text>
+              </View>
+            )}
+
+            {organisations.map((org) => (
+              <SaccoCard
+                key={org.id}
+                name={org.name}
+                description={`Join ${org.name}`}
+                logo={org.logo ? { uri: org.logo } : require('../../../../assets/logo.png')}
+                onPress={() => handleOrgPress(org)}
+              />
+            ))}
+          </View>
+        </ScrollView>
+
+
+      </View>
+    </AppBackground>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: { flex: 1 },
   backButton: {
     position: 'absolute',
     top: 50,
@@ -108,46 +120,36 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
   },
-  backArrow: {
-    fontSize: 24,
-    color: '#1A1A1A',
-  },
-  scrollView: {
-    flex: 1,
-  },
-  scrollContent: {
-    paddingTop: 110,
-    paddingHorizontal: 24,
-    paddingBottom: 40,
-  },
-  logo: {
-    width: 200,
-    height: 60,
-    alignSelf: 'center',
-    marginBottom: 40,
-  },
-  welcomeText: {
-    fontSize: 24,
-    fontWeight: '700',
-    color: colors.primary.DEFAULT,
+  scrollView: { flex: 1 },
+  scrollContent: { paddingTop: 110, paddingHorizontal: 24, paddingBottom: 40 },
+  logo: { width: 200, height: 60, alignSelf: 'center', marginBottom: 40 },
+  welcomeText: { fontSize: 24, fontWeight: '700', color: colors.text.primary, marginBottom: 12 },
+  nameHighlight: { fontSize: 24, fontWeight: '700', color: colors.primary.DEFAULT },
+
+  saccoList: { gap: 0 },
+  skeletonCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 16,
     marginBottom: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
+    elevation: 2,
   },
-  subtitle: {
-    ...typography.styles.bodyMedium,
-    fontSize: 14,
-    color: colors.text.secondary,
-    marginBottom: 32,
-    lineHeight: 20,
-  },
-  saccoList: {
-    gap: 0,
-  },
+  skeletonLogo: { width: 48, height: 48, borderRadius: 8, backgroundColor: '#E0E0E0', marginRight: 12 },
+  skeletonText: { flex: 1 },
+  skeletonLine: { height: 14, borderRadius: 6, backgroundColor: '#E0E0E0', width: '80%' },
+  errorContainer: { alignItems: 'center', paddingVertical: 24 },
+  errorText: { ...typography.styles.bodyMedium, color: colors.text.secondary, marginBottom: 8 },
+  retryText: { ...typography.styles.bodyMedium, color: colors.primary.DEFAULT, fontWeight: '600' },
+
 });

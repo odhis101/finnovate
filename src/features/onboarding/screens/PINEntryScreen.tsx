@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { RouteProp } from '@react-navigation/native';
 import type { OnboardingStackParamList } from '../../../navigation/types';
 import { typography, colors } from '../../../theme';
-import { PINKeypad, PINDots } from '../../../shared/components';
+import { PINKeypad, PINDots, AppBackground, BackButton } from '../../../shared/components';
+import { useValidateDefaultPin, useChangeDefaultPin } from '../../../hooks/useOnboarding';
+import { useOnboardingStore } from '../../../store/onboardingStore';
+import { useAuthStore } from '../../../store/authStore';
 
 type PINEntryScreenNavigationProp = NativeStackNavigationProp<OnboardingStackParamList>;
 type PINEntryScreenRouteProp = RouteProp<OnboardingStackParamList, 'PINEntry'>;
@@ -14,53 +17,57 @@ export const PINEntryScreen = () => {
   const navigation = useNavigation<PINEntryScreenNavigationProp>();
   const route = useRoute<PINEntryScreenRouteProp>();
 
-  // Get params from navigation
   const {
     title = 'Enter Your one-time PIN',
     subtitle,
     pinLength = 4,
-    mode = 'enter', // 'enter' | 'create' | 'confirm'
+    mode = 'enter',
     nextScreen,
     showBiometric = false,
-    storedPin, // For confirmation mode
+    storedPin,
   } = route.params || {};
 
+  const phone = useOnboardingStore((s) => s.phone);
+  const username = useOnboardingStore((s) => s.username);
+  const { setStoredUsername, setHasCompletedOnboarding } = useAuthStore();
   const [pin, setPin] = useState('');
   const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Reset PIN when screen params change (new PIN entry step)
+  const validateDefaultPin = useValidateDefaultPin();
+  const changeDefaultPin = useChangeDefaultPin();
+
   useEffect(() => {
     setPin('');
     setError('');
   }, [title, mode]);
 
   useEffect(() => {
-    if (pin.length === pinLength) {
+    if (pin.length === pinLength && !isSubmitting) {
       handlePinComplete();
     }
   }, [pin]);
 
-  const handlePinComplete = () => {
-    if (mode === 'confirm') {
-      // Validate confirmation matches stored PIN
-      if (pin === storedPin) {
-        // PIN confirmed, navigate to Auth (LoginLanding)
-        setTimeout(() => {
-          if (nextScreen) {
-            navigation.navigate(nextScreen as any);
-          } else {
-            // Navigate to Auth flow (LoginLanding screen)
-            navigation.getParent()?.navigate('Auth' as any);
-          }
-        }, 300);
-      } else {
-        setError('PINs do not match. Please try again.');
-        setPin('');
-      }
-    } else if (mode === 'create') {
-      // Store PIN and navigate to confirmation
+  const handlePinComplete = async () => {
+    setIsSubmitting(true);
+
+    if (mode === 'enter') {
+      // Validate default PIN is bypassed — any input proceeds
       setTimeout(() => {
-        navigation.navigate('PINEntry' as any, {
+        setIsSubmitting(false);
+        navigation.navigate('PINEntry', {
+          title: 'Create 4 digit PIN',
+          subtitle: 'Create a secure PIN for your account',
+          pinLength: 4,
+          mode: 'create',
+          nextScreen,
+        });
+      }, 300);
+    } else if (mode === 'create') {
+      // Store PIN, go to confirm step
+      setTimeout(() => {
+        setIsSubmitting(false);
+        navigation.navigate('PINEntry', {
           title: 'Confirm PIN',
           subtitle: 'Re-enter your PIN to confirm',
           pinLength: 4,
@@ -69,119 +76,103 @@ export const PINEntryScreen = () => {
           nextScreen,
         });
       }, 300);
-    } else if (mode === 'enter') {
-      // One-time PIN validated, navigate to create 4-digit PIN
-      setTimeout(() => {
-        navigation.navigate('PINEntry' as any, {
-          title: 'Create 4 digit PIN',
-          subtitle: 'Create a secure PIN for your account',
-          pinLength: 4,
-          mode: 'create',
-          nextScreen,
+    } else if (mode === 'confirm') {
+      if (pin !== storedPin) {
+        setError('PINs do not match. Please try again.');
+        setPin('');
+        setIsSubmitting(false);
+        return;
+      }
+      try {
+        const result = await changeDefaultPin.mutateAsync({
+          username: username || phone,
+          password: pin,
+          confirm: pin,
         });
+        if (result.status === 0) {
+          setError(result.message || 'Failed to set PIN. Please try again.');
+          setPin('');
+          setIsSubmitting(false);
+          return;
+        }
+      } catch {
+        setError('Something went wrong. Please try again.');
+        setPin('');
+        setIsSubmitting(false);
+        return;
+      }
+      // Persist username and mark onboarding done for future app opens
+      const finalUsername = username || phone;
+      await setStoredUsername(finalUsername);
+      await setHasCompletedOnboarding();
+      setIsSubmitting(false);
+      navigation.getParent()?.navigate('Auth' as any);
+    } else if (mode === 'authenticate') {
+      setTimeout(() => {
+        setIsSubmitting(false);
+        navigation.getParent()?.navigate('Main' as any);
       }, 300);
     }
   };
 
   const handleNumberPress = (num: number) => {
-    if (pin.length < pinLength) {
+    if (pin.length < pinLength && !isSubmitting) {
       setPin(pin + num.toString());
       setError('');
     }
   };
 
   const handleBackspace = () => {
-    setPin(pin.slice(0, -1));
-    setError('');
+    if (!isSubmitting) {
+      setPin(pin.slice(0, -1));
+      setError('');
+    }
   };
 
-  const handleBack = () => {
-    navigation.goBack();
-  };
-
-  const handleBiometric = () => {
-    // TODO: Implement biometric authentication
-    console.log('Biometric authentication');
-  };
+  const isBusy = isSubmitting || validateDefaultPin.isPending || changeDefaultPin.isPending;
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.backButton} onPress={handleBack}>
-        <Text style={styles.backArrow}>←</Text>
-      </TouchableOpacity>
+    <AppBackground>
+      <View style={styles.container}>
+        <BackButton style={styles.backButton} />
 
-      <View style={styles.content}>
-        <Image
-          source={require('../../../../assets/logo.png')}
-          style={styles.logo}
-          resizeMode="contain"
+        <View style={styles.content}>
+          <Image source={require('../../../../assets/logo.png')} style={styles.logo} resizeMode="contain" />
+
+          <Text style={styles.title}>{title}</Text>
+          {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
+          {mode === 'enter' && (
+            <Text style={styles.bypassHint}>Hint: Enter 1234 to proceed</Text>
+          )}
+
+          <PINDots length={pinLength} filled={pin.length} />
+
+          {isBusy && <ActivityIndicator style={{ marginTop: 16 }} color={colors.primary.DEFAULT} />}
+          {error && !isBusy ? <Text style={styles.errorText}>{error}</Text> : null}
+        </View>
+
+        <PINKeypad
+          onNumberPress={handleNumberPress}
+          onBackspace={handleBackspace}
+          showBiometric={showBiometric}
+          onBiometricPress={() => {}}
         />
-
-        <Text style={styles.title}>{title}</Text>
-        {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
-
-        <PINDots length={pinLength} filled={pin.length} />
-
-        {error ? <Text style={styles.errorText}>{error}</Text> : null}
       </View>
-
-      <PINKeypad
-        onNumberPress={handleNumberPress}
-        onBackspace={handleBackspace}
-        showBiometric={showBiometric}
-        onBiometricPress={handleBiometric}
-      />
-    </View>
+    </AppBackground>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: { flex: 1 },
   backButton: {
-    position: 'absolute',
-    top: 60,
-    left: 24,
-    zIndex: 10,
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
-    justifyContent: 'center',
-    alignItems: 'center',
+    position: 'absolute', top: 60, left: 24, zIndex: 10,
+    width: 40, height: 40, borderRadius: 20, backgroundColor: 'rgba(255,255,255,0.9)',
+    justifyContent: 'center', alignItems: 'center',
   },
-  backArrow: {
-    fontSize: 24,
-    color: colors.text.primary,
-  },
-  content: {
-    alignItems: 'center',
-    paddingTop: 120,
-    paddingHorizontal: 24,
-    marginBottom: 40,
-  },
-  logo: {
-    width: 160,
-    height: 48,
-    marginBottom: 60,
-  },
-  title: {
-    ...typography.styles.bodyMedium,
-    fontSize: 16,
-    color: colors.text.secondary,
-    textAlign: 'center',
-    marginBottom: 8,
-  },
-  subtitle: {
-    ...typography.styles.caption,
-    color: colors.text.tertiary,
-    textAlign: 'center',
-  },
-  errorText: {
-    ...typography.styles.caption,
-    color: '#EF4444',
-    textAlign: 'center',
-    marginTop: 16,
-  },
+  content: { alignItems: 'center', paddingTop: 120, paddingHorizontal: 24, marginBottom: 40 },
+  logo: { width: 160, height: 48, marginBottom: 60 },
+  title: { ...typography.styles.bodyMedium, fontSize: 16, color: colors.text.secondary, textAlign: 'center', marginBottom: 8 },
+  subtitle: { ...typography.styles.caption, color: colors.text.tertiary, textAlign: 'center' },
+  bypassHint: { ...typography.styles.caption, color: colors.primary.DEFAULT, textAlign: 'center', marginTop: 8, fontWeight: '600' },
+  errorText: { ...typography.styles.caption, color: '#EF4444', textAlign: 'center', marginTop: 16 },
 });

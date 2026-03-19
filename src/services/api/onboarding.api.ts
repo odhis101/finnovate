@@ -56,11 +56,13 @@ export const onboardingApi = {
     apiClient.post<ApiResponse<IdentityType[]>>('/identity-type/index'),
 
   createClientInitial: (payload: KYCInitialPayload) => {
-    const form = new FormData();
+    const params = new URLSearchParams();
     (Object.keys(payload) as (keyof KYCInitialPayload)[]).forEach((key) => {
-      form.append(key, String(payload[key]));
+      params.append(key, String(payload[key]));
     });
-    return apiClient.post<ApiResponse<{ form_id: number }>>('/client/create/basic/initial', form);
+    return apiClient.post<ApiResponse<{ form_id: number }>>('/client/create/basic/initial', params.toString(), {
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    });
   },
 
   createClientFinal: (payload: KYCFinalPayload) => {
@@ -76,6 +78,7 @@ export const onboardingApi = {
     }
     return apiClient.post<ApiResponse<KYCFinalResponse>>('/client/create/basic/final', form, {
       timeout: 60000,
+      headers: { 'Content-Type': 'multipart/form-data' },
     });
   },
 };

@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { OnboardingStackParamList } from '../../../navigation/types';
 import { typography, colors } from '../../../theme';
-import { Button } from '../../../shared/components';
+import { Button, AppBackground } from '../../../shared/components';
 
 type GetStartedScreenNavigationProp = NativeStackNavigationProp<OnboardingStackParamList, 'GetStarted'>;
 
@@ -46,14 +46,15 @@ export const GetStartedScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <ScrollView
-        horizontal
-        pagingEnabled
-        showsHorizontalScrollIndicator={false}
-        onScroll={onScroll}
-        scrollEventThrottle={16}
-      >
+    <AppBackground>
+      <View style={styles.container}>
+        <ScrollView
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+          onScroll={onScroll}
+          scrollEventThrottle={16}
+        >
         {carouselData.map((item) => (
           <View key={item.id} style={styles.slide}>
             <View style={styles.content}>
@@ -105,7 +106,8 @@ export const GetStartedScreen = () => {
           fullWidth
         />
       </View>
-    </View>
+      </View>
+    </AppBackground>
   );
 };
 
@@ -171,7 +173,7 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: '#D1C4E9',
+    backgroundColor: '#EBDBB7',
   },
   paginationDotActive: {
     width: 10,

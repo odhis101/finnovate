@@ -7,6 +7,11 @@ import {
   OTPVerificationScreen,
   PINEntryScreen,
   SaccoSelectionScreen,
+  CreateAccountScreen,
+  SelectGroupScreen,
+  KYCScreen,
+  UploadIDScreen,
+  OnboardingDepositScreen,
 } from '@/features/onboarding';
 
 const Stack = createNativeStackNavigator<OnboardingStackParamList>();
@@ -17,7 +22,6 @@ export const OnboardingNavigator = () => {
       initialRouteName="GetStarted"
       screenOptions={{
         headerShown: false,
-        contentStyle: { backgroundColor: 'transparent' },
       }}
     >
       <Stack.Screen name="GetStarted" component={GetStartedScreen} />
@@ -25,6 +29,11 @@ export const OnboardingNavigator = () => {
       <Stack.Screen name="OTPVerification" component={OTPVerificationScreen} />
       <Stack.Screen name="PINEntry" component={PINEntryScreen} />
       <Stack.Screen name="SaccoSelection" component={SaccoSelectionScreen} />
+      <Stack.Screen name="CreateAccount" component={CreateAccountScreen} />
+      <Stack.Screen name="SelectGroup" component={SelectGroupScreen} />
+      <Stack.Screen name="KYC" component={KYCScreen} />
+      <Stack.Screen name="UploadID" component={UploadIDScreen} />
+      <Stack.Screen name="OnboardingDeposit" component={OnboardingDepositScreen} />
     </Stack.Navigator>
   );
 };

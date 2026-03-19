@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Image, Text, TouchableOpacity } from 'react-native';
+import { View, Image, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { colors } from '../../../theme';
 
 interface DashboardHeaderProps {
   userName: string;
@@ -12,6 +14,8 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   lastLogin,
   notificationCount = 0,
 }) => {
+  const insets = useSafeAreaInsets();
+
   const getGreeting = () => {
     const hour = new Date().getHours();
     if (hour < 12) return 'Good Morning';
@@ -24,33 +28,33 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   };
 
   return (
-    <View className="px-6 pt-4 pb-6">
+    <View style={[styles.container, { paddingTop: insets.top + 16 }]}>
       {/* Top Row: Logo + User Image + Bell */}
-      <View className="flex-row items-center justify-between mb-6">
+      <View style={styles.topRow}>
         {/* Logo */}
         <Image
           source={require('../../../../assets/logoshort.png')}
-          style={{ width: 40, height: 40 }}
+          style={styles.logo}
           resizeMode="contain"
         />
 
         {/* User Image */}
         <Image
           source={require('../../../../assets/userImage.png')}
-          style={{ width: 60, height: 60, borderRadius: 30 }}
+          style={styles.userImage}
           resizeMode="cover"
         />
 
         {/* Bell Icon with Badge */}
-        <TouchableOpacity onPress={handleBellPress} className="relative">
+        <TouchableOpacity onPress={handleBellPress} style={styles.bellContainer}>
           <Image
             source={require('../../../../assets/bellIcom.png')}
-            style={{ width: 24, height: 24 }}
+            style={styles.bellIcon}
             resizeMode="contain"
           />
           {notificationCount > 0 && (
-            <View className="absolute -top-1 -right-1 bg-red-500 rounded-full w-5 h-5 items-center justify-center">
-              <Text className="text-white text-xs font-bold">
+            <View style={styles.badge}>
+              <Text style={styles.badgeText}>
                 {notificationCount > 9 ? '9+' : notificationCount}
               </Text>
             </View>
@@ -59,15 +63,79 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
       </View>
 
       {/* Greeting Section */}
-      <View className="items-center">
-        <Text className="text-xl font-manrope-semibold text-gray-800">
+      <View style={styles.greetingContainer}>
+        <Text style={styles.greetingText}>
           {getGreeting()},{' '}
-          <Text className="text-primary-500">{userName}</Text>
+          <Text style={styles.userName}>{userName}</Text>
         </Text>
-        <Text className="text-sm font-manrope-regular text-gray-500 mt-1">
+        <Text style={styles.lastLoginText}>
           Last login: {lastLogin}
         </Text>
       </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 24,
+    paddingBottom: 16,
+    backgroundColor: 'transparent',
+  },
+  topRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 16,
+  },
+  logo: {
+    width: 30,
+    height: 30,
+  },
+  userImage: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+  },
+  bellContainer: {
+    position: 'relative',
+  },
+  bellIcon: {
+    width: 24,
+    height: 24,
+  },
+  badge: {
+    position: 'absolute',
+    top: -4,
+    right: -4,
+    backgroundColor: '#EF4444',
+    borderRadius: 10,
+    width: 20,
+    height: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  badgeText: {
+    color: '#FFFFFF',
+    fontSize: 10,
+    fontWeight: 'bold',
+  },
+  greetingContainer: {
+    alignItems: 'center',
+  },
+  greetingText: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#1F2937',
+  },
+  userName: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: colors.primary.DEFAULT,
+  },
+  lastLoginText: {
+    fontSize: 12,
+    color: '#9CA3AF',
+    marginTop: 2,
+  },
+});
