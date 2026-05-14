@@ -6,7 +6,7 @@ import type { RouteProp } from '@react-navigation/native';
 import type { OnboardingStackParamList } from '../../../navigation/types';
 import { typography, colors } from '../../../theme';
 import { PINKeypad, PINDots, AppBackground, BackButton } from '../../../shared/components';
-import { useValidateDefaultPin, useChangeDefaultPin } from '../../../hooks/useOnboarding';
+import { useChangeDefaultPin } from '../../../hooks/useOnboarding';
 import { useOnboardingStore } from '../../../store/onboardingStore';
 import { useAuthStore } from '../../../store/authStore';
 
@@ -18,10 +18,10 @@ export const PINEntryScreen = () => {
   const route = useRoute<PINEntryScreenRouteProp>();
 
   const {
-    title = 'Enter Your one-time PIN',
+    title = 'Create 4 digit PIN',
     subtitle,
     pinLength = 4,
-    mode = 'enter',
+    mode = 'create',
     nextScreen,
     showBiometric = false,
     storedPin,
@@ -34,7 +34,6 @@ export const PINEntryScreen = () => {
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const validateDefaultPin = useValidateDefaultPin();
   const changeDefaultPin = useChangeDefaultPin();
 
   useEffect(() => {
@@ -51,19 +50,7 @@ export const PINEntryScreen = () => {
   const handlePinComplete = async () => {
     setIsSubmitting(true);
 
-    if (mode === 'enter') {
-      // Validate default PIN is bypassed — any input proceeds
-      setTimeout(() => {
-        setIsSubmitting(false);
-        navigation.navigate('PINEntry', {
-          title: 'Create 4 digit PIN',
-          subtitle: 'Create a secure PIN for your account',
-          pinLength: 4,
-          mode: 'create',
-          nextScreen,
-        });
-      }, 300);
-    } else if (mode === 'create') {
+    if (mode === 'create') {
       // Store PIN, go to confirm step
       setTimeout(() => {
         setIsSubmitting(false);
@@ -129,7 +116,7 @@ export const PINEntryScreen = () => {
     }
   };
 
-  const isBusy = isSubmitting || validateDefaultPin.isPending || changeDefaultPin.isPending;
+  const isBusy = isSubmitting || changeDefaultPin.isPending;
 
   return (
     <AppBackground>
@@ -141,9 +128,6 @@ export const PINEntryScreen = () => {
 
           <Text style={styles.title}>{title}</Text>
           {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
-          {mode === 'enter' && (
-            <Text style={styles.bypassHint}>Hint: Enter 1234 to proceed</Text>
-          )}
 
           <PINDots length={pinLength} filled={pin.length} />
 
@@ -173,6 +157,5 @@ const styles = StyleSheet.create({
   logo: { width: 160, height: 48, marginBottom: 60 },
   title: { ...typography.styles.bodyMedium, fontSize: 16, color: colors.text.secondary, textAlign: 'center', marginBottom: 8 },
   subtitle: { ...typography.styles.caption, color: colors.text.tertiary, textAlign: 'center' },
-  bypassHint: { ...typography.styles.caption, color: colors.primary.DEFAULT, textAlign: 'center', marginTop: 8, fontWeight: '600' },
   errorText: { ...typography.styles.caption, color: '#EF4444', textAlign: 'center', marginTop: 16 },
 });

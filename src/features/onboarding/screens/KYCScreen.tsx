@@ -69,7 +69,7 @@ export const KYCScreen = () => {
   const [idError, setIdError] = useState('');
   const [emailError, setEmailError] = useState('');
 
-  const { data: genders = [], isLoading: gendersLoading } = useGenders(selectedOrg?.id ?? 0);
+  const { data: genders = [], isLoading: gendersLoading } = useGenders(selectedOrg?.org_id ?? selectedOrg?.id ?? 0);
   const createClientInitial = useCreateClientInitial();
 
   const handleBack = () => navigation.goBack();
@@ -95,7 +95,7 @@ export const KYCScreen = () => {
         national_identity: idNumber,
         dob: formatDOB(dateOfBirth),
         gender: genderId,
-        org_id: selectedOrg!.id,
+        org_id: selectedOrg!.org_id ?? selectedOrg!.id,
       });
 
       if (result.status === 0) {

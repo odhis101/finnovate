@@ -22,9 +22,11 @@ export const authApi = {
   login: (payload: LoginPayload) =>
     apiClient.post<ApiResponse<LoginData>>('/auth/login', payload),
 
-  getAssociatedOrgs: (phone: string, nationalIdNumber: string, dateOfBirth: string) => {
+  getAssociatedOrgs: (phone: string, nationalIdNumber: string, notYetJoined?: boolean) => {
     const localPhone = phone.startsWith('+254') ? '0' + phone.slice(4) : phone;
-    return apiClient.post<ApiResponse<AssociatedOrg[]>>('/auth/get-associated-orgs', { phone: localPhone, nationalIdNumber, dateOfBirth });
+    const payload: Record<string, unknown> = { phone: localPhone, nationalIdNumber };
+    if (notYetJoined) payload.notYetJoined = true;
+    return apiClient.post<ApiResponse<AssociatedOrg[]>>('/auth/get-associated-orgs', payload);
   },
 
   activate: (phone: string) => {

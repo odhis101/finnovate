@@ -5,10 +5,13 @@ interface OnboardingState {
   // LookupScreen
   phone: string;
 
-  // Associated orgs returned from /auth/get-associated-orgs
+  // Associated orgs returned from /auth/get-associated-orgs (existing user)
   associatedOrgs: AssociatedOrg[];
 
-  // SaccoSelectionScreen — the org the user tapped
+  // Available orgs to join from /auth/get-associated-orgs?notYetJoined=true (new user)
+  availableOrgs: AssociatedOrg[];
+
+  // The org the user tapped to join
   selectedOrg: AssociatedOrg | null;
 
   // SelectGroupScreen
@@ -33,6 +36,7 @@ interface OnboardingState {
   // Actions
   setPhone: (phone: string) => void;
   setAssociatedOrgs: (orgs: AssociatedOrg[]) => void;
+  setAvailableOrgs: (orgs: AssociatedOrg[]) => void;
   setSelectedOrg: (org: AssociatedOrg) => void;
   setSelectedGroup: (group: Group) => void;
   setGenders: (genders: GenderOption[]) => void;
@@ -46,6 +50,7 @@ interface OnboardingState {
 const initialState = {
   phone: '',
   associatedOrgs: [],
+  availableOrgs: [],
   selectedOrg: null,
   selectedGroup: null,
   genders: [],
@@ -61,6 +66,7 @@ export const useOnboardingStore = create<OnboardingState>((set) => ({
 
   setPhone: (phone) => set({ phone }),
   setAssociatedOrgs: (orgs) => set({ associatedOrgs: orgs }),
+  setAvailableOrgs: (orgs) => set({ availableOrgs: orgs }),
   setSelectedOrg: (org) => set({ selectedOrg: org }),
   setSelectedGroup: (group) => set({ selectedGroup: group }),
   setGenders: (genders) => set({ genders }),

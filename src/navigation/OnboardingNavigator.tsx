@@ -4,11 +4,8 @@ import type { OnboardingStackParamList } from './types';
 import {
   GetStartedScreen,
   LookupScreen,
-  OTPVerificationScreen,
   PINEntryScreen,
-  SaccoSelectionScreen,
   CreateAccountScreen,
-  SelectGroupScreen,
   KYCScreen,
   UploadIDScreen,
   OnboardingDepositScreen,
@@ -26,11 +23,8 @@ export const OnboardingNavigator = () => {
     >
       <Stack.Screen name="GetStarted" component={GetStartedScreen} />
       <Stack.Screen name="Lookup" component={LookupScreen} />
-      <Stack.Screen name="OTPVerification" component={OTPVerificationScreen} />
       <Stack.Screen name="PINEntry" component={PINEntryScreen} />
-      <Stack.Screen name="SaccoSelection" component={SaccoSelectionScreen} />
       <Stack.Screen name="CreateAccount" component={CreateAccountScreen} />
-      <Stack.Screen name="SelectGroup" component={SelectGroupScreen} />
       <Stack.Screen name="KYC" component={KYCScreen} />
       <Stack.Screen name="UploadID" component={UploadIDScreen} />
       <Stack.Screen name="OnboardingDeposit" component={OnboardingDepositScreen} />

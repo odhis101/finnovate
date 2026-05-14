@@ -56,19 +56,16 @@ export type MainStackParamList = {
 export type OnboardingStackParamList = {
   GetStarted: undefined;
   Lookup: undefined;
-  OTPVerification: { phoneNumber: string };
   PINEntry: {
     title?: string;
     subtitle?: string;
     pinLength?: number;
-    mode?: 'enter' | 'create' | 'confirm' | 'authenticate';
+    mode?: 'create' | 'confirm' | 'authenticate';
     nextScreen?: keyof OnboardingStackParamList;
     showBiometric?: boolean;
     storedPin?: string;
   };
-  SaccoSelection: undefined;
   CreateAccount: undefined;
-  SelectGroup: undefined;
   KYC: undefined;
   UploadID: undefined;
   OnboardingDeposit: undefined;

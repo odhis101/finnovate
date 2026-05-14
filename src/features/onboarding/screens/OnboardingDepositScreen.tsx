@@ -19,10 +19,10 @@ import { validateKenyanPhone, validateAmount } from '../../../utils/validation';
 type OnboardingDepositScreenNavigationProp = NativeStackNavigationProp<OnboardingStackParamList, 'OnboardingDeposit'>;
 
 const PIN_ENTRY_PARAMS = {
-  title: 'Enter your one-time PIN',
-  subtitle: 'Enter the default PIN sent to your phone via SMS',
+  title: 'Create 4 digit PIN',
+  subtitle: 'Create a secure PIN for your account',
   pinLength: 4,
-  mode: 'enter' as const,
+  mode: 'create' as const,
 };
 
 export const OnboardingDepositScreen = () => {

@@ -25,7 +25,12 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.finnovate.app"
+      "bundleIdentifier": "com.finnovate.app",
+      "infoPlist": {
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true
+        }
+      }
     },
     "android": {
       "adaptiveIcon": {

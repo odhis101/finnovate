@@ -5,34 +5,25 @@ import {
   StyleSheet,
   Image,
   ScrollView,
-  TouchableOpacity,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { OnboardingStackParamList } from '../../../navigation/types';
 import { typography, colors } from '../../../theme';
 import { SaccoCard, AppBackground, BackButton } from '../../../shared/components';
-import { useOrganisations } from '../../../hooks/useOnboarding';
 import { useOnboardingStore } from '../../../store/onboardingStore';
-import type { Organisation } from '../../../services/api/types';
+import type { AssociatedOrg } from '../../../services/api/types';
 
 type CreateAccountScreenNavigationProp = NativeStackNavigationProp<OnboardingStackParamList, 'CreateAccount'>;
-
-const SkeletonCard = () => <View style={styles.skeletonCard} />;
 
 export const CreateAccountScreen = () => {
   const navigation = useNavigation<CreateAccountScreenNavigationProp>();
   const setSelectedOrg = useOnboardingStore((s) => s.setSelectedOrg);
+  const availableOrgs = useOnboardingStore((s) => s.availableOrgs);
 
-  const { data: organisations, isLoading, isError, refetch } = useOrganisations();
-
-  const handleOrgPress = (org: Organisation) => {
+  const handleOrgPress = (org: AssociatedOrg) => {
     setSelectedOrg(org);
-    navigation.navigate('SelectGroup');
-  };
-
-  const handleActivateAccount = () => {
-    navigation.navigate('SaccoSelection');
+    navigation.navigate('KYC');
   };
 
   return (
@@ -60,24 +51,13 @@ export const CreateAccountScreen = () => {
           </Text>
 
           <View style={styles.saccoList}>
-            {isLoading && (
-              <>
-                <SkeletonCard />
-                <SkeletonCard />
-                <SkeletonCard />
-              </>
-            )}
-
-            {isError && (
+            {availableOrgs.length === 0 && (
               <View style={styles.errorContainer}>
-                <Text style={styles.errorText}>Failed to load organisations.</Text>
-                <TouchableOpacity onPress={() => refetch()}>
-                  <Text style={styles.retryText}>Tap to retry</Text>
-                </TouchableOpacity>
+                <Text style={styles.errorText}>No SACCOs available to join.</Text>
               </View>
             )}
 
-            {organisations?.map((org) => (
+            {availableOrgs.map((org) => (
               <SaccoCard
                 key={org.id}
                 name={org.name}
@@ -88,8 +68,6 @@ export const CreateAccountScreen = () => {
             ))}
           </View>
         </ScrollView>
-
-  
       </View>
     </AppBackground>
   );
@@ -122,17 +100,6 @@ const styles = StyleSheet.create({
   note: { color: colors.text.secondary },
   highlight: { color: colors.primary.DEFAULT, fontWeight: '600' },
   saccoList: { gap: 0 },
-  skeletonCard: { height: 72, backgroundColor: '#F0F0F0', borderRadius: 12, marginBottom: 12 },
   errorContainer: { alignItems: 'center', paddingVertical: 24 },
   errorText: { ...typography.styles.bodyMedium, color: colors.text.secondary, marginBottom: 8 },
-  retryText: { ...typography.styles.bodyMedium, color: colors.primary.DEFAULT, fontWeight: '600' },
-  footer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingBottom: 40,
-    paddingTop: 16,
-  },
-  footerText: { ...typography.styles.bodyMedium, color: colors.text.secondary },
-  footerLink: { ...typography.styles.bodyMedium, color: colors.primary.DEFAULT, fontWeight: '600' },
 });

@@ -28,8 +28,8 @@ export const useGroups = (orgId: number) =>
 
 export const useGetAssociatedOrgs = () =>
   useMutation({
-    mutationFn: ({ phone, nationalIdNumber, dateOfBirth }: { phone: string; nationalIdNumber: string; dateOfBirth: string }) =>
-      authApi.getAssociatedOrgs(phone, nationalIdNumber, dateOfBirth).then((r) => r.data),
+    mutationFn: ({ phone, nationalIdNumber, notYetJoined }: { phone: string; nationalIdNumber: string; notYetJoined?: boolean }) =>
+      authApi.getAssociatedOrgs(phone, nationalIdNumber, notYetJoined).then((r) => r.data),
   });
 
 export const useActivate = () =>

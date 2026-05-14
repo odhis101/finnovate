@@ -113,10 +113,10 @@ export const UploadIDScreen = () => {
       }
 
       navigation.navigate('PINEntry', {
-        title: 'Enter your one-time PIN',
-        subtitle: 'Enter the default PIN sent to your phone via SMS',
+        title: 'Create 4 digit PIN',
+        subtitle: 'Create a secure PIN for your account',
         pinLength: 4,
-        mode: 'enter',
+        mode: 'create',
       });
     } catch (err: any) {
       const msg = err?.response?.data?.message || err?.response?.data?.error || err?.message || 'Something went wrong. Please try again.';

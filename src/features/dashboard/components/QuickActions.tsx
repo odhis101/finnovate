@@ -19,12 +19,6 @@ export const QuickActions: React.FC = () => {
 
   const actions: QuickAction[] = [
     {
-      id: '1',
-      label: 'Send Money',
-      icon: require('../../../../assets/SendMoney.png'),
-      onPress: () => console.log('Send Money pressed'),
-    },
-    {
       id: '2',
       label: 'Make Deposit',
       icon: require('../../../../assets/Deposit.png'),
@@ -34,7 +28,7 @@ export const QuickActions: React.FC = () => {
       id: '3',
       label: 'My Loans',
       icon: require('../../../../assets/MyLoans.png'),
-      onPress: () => console.log('My Loans pressed'),
+      onPress: () => navigation.getParent()?.navigate('MainTabs', { screen: 'Loans' }),
     },
     {
       id: '4',
